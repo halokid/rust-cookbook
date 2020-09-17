@@ -1,3 +1,5 @@
 /.idea
 /guessing_game/target
 /hello-world/target
+/generic_trait_lifetime/target
+/vector_string_hashmap/target
