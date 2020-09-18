@@ -3,3 +3,4 @@
 /hello-world/target
 /generic_trait_lifetime/target
 /vector_string_hashmap/target
+/hello-actix/target
