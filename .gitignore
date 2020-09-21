@@ -4,3 +4,6 @@
 /generic_trait_lifetime/target
 /vector_string_hashmap/target
 /hello-actix/target
+/hello-actix/.idea
+/minigrep/.idea
+/minigrep/target
