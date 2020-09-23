@@ -9,7 +9,7 @@ fn main() {
   println!("{:?}", args);
 
   let config = Config::new(&args).unwrap_or_else(|err| {
-    println!("Problem parsing arguments: {}", err);
+    eprintln!("Problem parsing arguments: {}", err);
     process::exit(1);
   });
 
@@ -18,7 +18,7 @@ fn main() {
 
 //  run(config);      // config返回是一个Result， 如果不处理Result返回的Err，会产生一个告警
   if let Err(e) = run(config) {
-    println!("Application error: {}", e);
+    eprintln!("Application error: {}", e);
     process::exit(1);
   }
 }
