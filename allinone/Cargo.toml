@@ -1,0 +1,10 @@
+[package]
+name = "allinone"
+version = "0.1.0"
+authors = ["r0x <r00txxyyzz@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+consul-rs = {git = "https://github.com/liyiheng/consul-rs", branch = "master"}
