@@ -1,0 +1,22 @@
+[package]
+name = "helloworld-tonic"
+version = "0.1.0"
+edition = "2018"
+
+[[bin]] # Bin to run the HelloWorld gRPC server, 用来运行 HelloWorld gRPC 服务器的可执行文件
+# run:  cargo run --bin helloworld-server
+name = "helloworld-server"
+path = "src/server.rs"
+
+[[bin]] # Bin to run the HelloWorld gRPC client, 用来运行 HelloWorld gRPC 客户端的可执行文件
+# run: cargo run --bin helloworld-client
+name = "helloworld-client"
+path = "src/client.rs"
+
+[dependencies]
+tonic = "0.3"
+prost = "0.6"
+tokio = { version = "0.2", features = ["macros"] }
+
+[build-dependencies]
+tonic-build = "0.3"
