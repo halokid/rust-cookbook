@@ -4,7 +4,7 @@ use consul_rs::Client;
 
 #[test]
 fn kv() {
-  let c = Client::new("10.87.134.91", 32350);
+  let c = Client::new("9.9.9.9", 32350);
 
   let ok = c.kv_put("test-key", "test_value").unwrap();
   assert_eq!(ok, true);

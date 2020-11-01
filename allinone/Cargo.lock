@@ -110,7 +110,7 @@ dependencies = [
 [[package]]
 name = "consul-rs"
 version = "0.1.0"
-source = "git+https://github.com/liyiheng/consul-rs?branch=master#8d476771091c47055948cec8e32de53d04730a51"
+source = "git+https://github.com/liyiheng/consul-rs#8d476771091c47055948cec8e32de53d04730a51"
 dependencies = [
  "base64",
  "reqwest",
