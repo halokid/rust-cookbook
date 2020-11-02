@@ -26,6 +26,7 @@ impl Pors for DoPors {
   }
 }
 
+// todo: dyn std::error::Error 定义了Box这个泛型函数返回的类型
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
   let addr ="127.0.0.1:18080".parse()?;

@@ -11,6 +11,11 @@ edition = "2018"
 name = "pors-server"
 path = "src/server.rs"
 
+[[bin]]
+# run: cargo run --bin pors-client
+name = "pors-client"
+path = "src/client.rs"
+
 [dependencies]
 tonic = "0.3"
 prost = "0.6"
@@ -18,3 +23,12 @@ tokio = { version = "0.2", features = ["macros"] }
 
 [build-dependencies]
 tonic-build = "0.3"
+
+#[profile.dev]
+#codegen-units = 4
+
+# todo: 把文件放进项目的动态装载中, 加上去之后， examples/server文件夹的源码在本项目也可以装载识别，不用另起项目
+[workspace]
+members = [".", "examples/server"]
+
+

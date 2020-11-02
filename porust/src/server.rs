@@ -1,11 +1,13 @@
 use tonic::{transport::Server, Request, Response, Status};
 
-use po_rust::pors_server::{Pors, PorsServer};
-use po_rust::{Rsp, Req};
-
+// todo: 装载proto生成的库
 pub mod po_rust {
   tonic::include_proto!("porust");
 }
+
+use po_rust::pors_server::{Pors, PorsServer};
+use po_rust::{Rsp, Req};
+
 
 #[derive(Debug, Default)]
 pub struct DoPors {}
@@ -27,6 +29,19 @@ impl Pors for DoPors {
 }
 
 #[tokio::main]
+pub async fn run(addr: &String) -> Result<(), Box<dyn std::error::Error>> {
+  let addr = addr.parse()?;
+  let pors = DoPors::default();     // 返回DoPors结构体的默认值
+
+  Server::builder().add_service(PorsServer::new(pors))
+    .serve(addr)
+    .await?;
+
+  Ok(())
+}
+
+
+#[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
   let addr ="127.0.0.1:18080".parse()?;
   let pors = DoPors::default();     // 返回DoPors结构体的默认值
@@ -38,8 +53,14 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
   Ok(())
 }
 
+
 #[test]
 fn server_test() {
-  println!("serverTest...");
+  println!("server test...");
+}
+
+#[test]
+fn server_run_test() {
+  println!("server run test...");
 }
 

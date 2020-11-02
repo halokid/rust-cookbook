@@ -1,4 +1,3 @@
-extern crate consul_rs;
 
 use consul_rs::Client;
 
