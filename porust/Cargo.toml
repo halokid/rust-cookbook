@@ -29,6 +29,6 @@ tonic-build = "0.3"
 
 # todo: 把文件放进项目的动态装载中, 加上去之后， examples/server文件夹的源码在本项目也可以装载识别，不用另起项目
 [workspace]
-members = [".", "examples/server"]
+members = [".", "examples/server", "examples/client"]
 
 

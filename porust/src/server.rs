@@ -14,18 +14,22 @@ pub struct DoPors {}
 
 #[tonic::async_trait]
 impl Pors for DoPors {
+
+  // todo: rewrite invoke method
   async fn invoke (
     &self,
     request: Request<Req>,
   ) -> Result<Response<Rsp>, Status> {
-    println!("收到请求: {:?}", request);
+    println!("<==Get Request==>: {:?}", request);
 
     let rsp = po_rust::Rsp {
-      rspdata: format!("返回: {}", request.into_inner().reqdata).into(),
+      // 返回数据
+      rspdata: format!("{}", request.into_inner().reqdata).into(),
     };
 
     Ok(Response::new(rsp))
   }
+
 }
 
 #[tokio::main]
