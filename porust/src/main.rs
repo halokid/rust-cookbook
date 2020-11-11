@@ -1,5 +1,5 @@
 pub mod server;
 
 fn main() {
-    println!("Hello, world!");
+    println!("Hello, porust!");
 }
