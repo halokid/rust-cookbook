@@ -1,20 +1,21 @@
 [package]
-name = "porust"
+name = "rust_project_best_pratice"
 version = "0.1.0"
 authors = ["mm jxx <r00txxyyzz@gmail.com>"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[[bin]]
+#[[bin]]
 # run:  cargo run --bin pors-server
-name = "pors-server"
-path = "src/server.rs"
+#name = "pors-server"
+#path = "src/server.rs"
 
 [dependencies]
 tonic = "0.3"
 prost = "0.6"
 tokio = { version = "0.2", features = ["macros"] }
+serde_json = "1.0"
 
 [build-dependencies]
 tonic-build = "0.3"

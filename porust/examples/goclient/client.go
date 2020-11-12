@@ -2,7 +2,6 @@ package main
 
 import (
   "log"
-  "os"
   "reflect"
 
   pb "./proto"
@@ -24,16 +23,23 @@ func main() {
   c := pb.NewPorsClient(conn)
 
   // Contact the server and print out its response.
+  /**
   name := `{"name": "HaloKid"}`
   if len(os.Args) > 1 {
     name = os.Args[1]
   }
   rsp, err := c.Invoke(context.Background(), &pb.Req{ Reqdata: name })
+  */
+
+  reqData := `{"call": "say_hi", "data": {"name": "halokid"}}`
+  rsp, err := c.Invoke(context.Background(), &pb.Req{ Reqdata: reqData })
+
   if err != nil {
     log.Fatalf("could not greet: %v", err)
   }
   log.Printf("rsp type: %+v, struct: %+v, val: %+v", reflect.TypeOf(rsp), rsp, rsp.Rspdata)
 }
+
 
 
 

@@ -11,6 +11,7 @@ use po_rust::Req;
 
 #[tokio::main]
 pub async fn invoke(addr: String, req_data: String, rsp: &mut String) -> Result<(), Box<dyn std::error::Error>> {
+  // 调用server的invoke方法
   let mut client = PorsClient::connect(addr).await?;
 
   let request = tonic::Request::new(Req {
@@ -23,11 +24,13 @@ pub async fn invoke(addr: String, req_data: String, rsp: &mut String) -> Result<
 //  println!("返回: {:?}", response.into_inner().rspdata);
 //  print_type_of(&response.into_inner().rspdata);
 //  rsp = response.into_inner().rspdata;
+  // todo: 赋值给rsp
   rsp.push_str(&response.into_inner().rspdata.to_string());
 //  rsp.push_str("xxxxx");
 
   Ok(())
 }
+
 
 //fn print_type_of<T>(_: &T) {
 //  println!("{}", unsafe { std::intrinsics::type_name::<T>() });
