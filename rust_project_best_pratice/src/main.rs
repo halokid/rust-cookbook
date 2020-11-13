@@ -8,6 +8,7 @@ fn main() {
 //  serialize::run_serial();
 
 //  except::ex1();
-  let mut change_str;
-  except::ex1_fix();
+  let mut change_str = String::new();
+  except::ex1_fix(&mut change_str);
+  println!("xx: {}", change_str);
 }
