@@ -58,7 +58,13 @@ trait Employee: Person {
   fn job_title(&self) -> String;
 }
 
+trait Expat {
+  fn salary(&self) -> f32;
+}
 
+trait ExpatEmployee: Employee + Expat {  // 多继承，同时继承 Employee 和 Expat
+  fn additional_tax(&self) -> f64;
+}
 
 
 

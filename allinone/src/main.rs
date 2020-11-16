@@ -2,6 +2,9 @@ pub mod types;
 pub mod operation;
 pub mod control;
 pub mod impl_trait;
+pub mod generics;
+pub mod vec;
+pub mod string;
 
 fn main() {
   println!("Hello, world!");
@@ -51,6 +54,12 @@ fn main() {
 
   // ================= 实现方法和接口 ================
   impl_trait::comm();
+
+  // ================= 泛型 ======================
+  generics::comm();
+
+  // ================= Vec集合 ==================
+  vec::comm();
 
 }
 
