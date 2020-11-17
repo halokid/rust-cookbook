@@ -5,6 +5,7 @@ pub mod impl_trait;
 pub mod generics;
 pub mod vec;
 pub mod string;
+pub mod hashmap;
 
 fn main() {
   println!("Hello, world!");
@@ -61,6 +62,11 @@ fn main() {
   // ================= Vec集合 ==================
   vec::comm();
 
+  // ================ String 集合 ================
+  string::comm();
+
+  // =============== Hashmap 集合 ===============
+  hashmap::comm();
 }
 
 /// 外部注释
