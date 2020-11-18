@@ -1,6 +1,7 @@
 
-use consul_rs::Client;
+// use consul_rs::Client;
 
+/*
 #[test]
 fn kv() {
   let c = Client::new("9.9.9.9", 32350);
@@ -21,4 +22,6 @@ fn kv() {
   let ok = c.kv_put("pomid/rust-test/tcp@8.8.8.8:9999", "typ=rust").unwrap();
   assert_eq!(ok, true);
 }
+*/
+
 

@@ -6,6 +6,11 @@ pub mod generics;
 pub mod vec;
 pub mod string;
 pub mod hashmap;
+pub mod errors_handle;
+pub mod crate_mod;
+
+// extern crate local_ipaddress;  // 引入外部crate 方式2
+use local_ipaddress;        // 引入外部的crate 方式1
 
 fn main() {
   println!("Hello, world!");
@@ -67,6 +72,16 @@ fn main() {
 
   // =============== Hashmap 集合 ===============
   hashmap::comm();
+
+  // =============== 错误处理 ==================
+  errors_handle::comm();
+
+  // ========== 包、crate和模块 ================
+  crate_mod::comm();
+
+  // ========== 调用外部crate =================
+  let ipaddr = local_ipaddress::get().unwrap();
+  println!("ipaddr: {}", ipaddr);
 }
 
 /// 外部注释
@@ -97,10 +112,25 @@ fn plus_onex(a: i32) -> (i32, i32) {
 }
 
 
+// =============== 单元测试 ===============
+fn plus(x: i32, y: i32) -> i32 {
+  x + y
+}
 
+#[test]
+fn it_works() {
+  assert_eq!(4, plus(2, 2));
+}
 
+#[cfg(test)]
+mod tests {
+  use super::*;
 
-
+  #[test]
+  fn it_worksx() {
+    assert_eq!(4, plus(2, 2));
+  }
+}
 
 
 
