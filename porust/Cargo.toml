@@ -16,11 +16,17 @@ path = "src/server.rs"
 name = "pors-client"
 path = "src/client.rs"
 
+[[bin]]
+name = "main"
+path = "src/main.rs"
+
+
 [dependencies]
 tonic = "0.3"
 prost = "0.6"
 tokio = { version = "0.2", features = ["macros"] }
 serde_json = "1.0"
+consul-rs = {git = "https://github.com/liyiheng/consul-rs", branch = "master"}
 
 [build-dependencies]
 tonic-build = "0.3"
@@ -31,5 +37,6 @@ tonic-build = "0.3"
 # todo: 把文件放进项目的动态装载中, 加上去之后， examples/server文件夹的源码在本项目也可以装载识别，不用另起项目
 [workspace]
 members = [".", "examples/server", "examples/client"]
+
 
 

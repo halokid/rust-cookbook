@@ -59,6 +59,7 @@ fn main() {
   control::comm();
 
   // ================= 实现方法和接口 ================
+  // =========== dny traits =================
   impl_trait::comm();
 
   // ================= 泛型 ======================
@@ -82,6 +83,8 @@ fn main() {
   // ========== 调用外部crate =================
   let ipaddr = local_ipaddress::get().unwrap();
   println!("ipaddr: {}", ipaddr);
+
+
 }
 
 /// 外部注释
