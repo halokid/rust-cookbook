@@ -9,6 +9,8 @@ pub mod string;
 pub mod hashmap;
 pub mod errors_handle;
 pub mod crate_mod;
+pub mod inherit;
+pub mod interface;
 
 
 // ================== 集成测试 ===================

@@ -8,6 +8,8 @@ pub mod string;
 pub mod hashmap;
 pub mod errors_handle;
 pub mod crate_mod;
+pub mod inherit;
+pub mod interface;
 
 // extern crate local_ipaddress;  // 引入外部crate 方式2
 use local_ipaddress;        // 引入外部的crate 方式1
@@ -84,6 +86,13 @@ fn main() {
   let ipaddr = local_ipaddress::get().unwrap();
   println!("ipaddr: {}", ipaddr);
 
+  // ============ 继承范例1 ================
+  inherit::comm();
+
+  // =========== 接口范例1 ===============
+  interface::comm1();
+  interface::comm2();
+  interface::comm3();
 
 }
 

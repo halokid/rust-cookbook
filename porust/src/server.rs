@@ -39,11 +39,7 @@ impl Pors for DoPors {
     handle_req(reqdata, &mut handled_rsp);
 
     // todo: 直接执行方法
-//    let rspdata = say_hello(&reqdata);
-
-//    let rspdata = "xx".to_string();
     let rsp = po_rust::Rsp {
-//      rspdata: format!("{}", rspdata),
       rspdata: format!("{}", handled_rsp),
     };
     Ok(Response::new(rsp))
@@ -55,7 +51,6 @@ fn handle_req(reqdata: String, handled_rsp: &mut String) -> serde_json::Result<(
   // 统一处理req的数据， 分发call的方法
   // todo: 根据reqdata指定call的方法执行
   let req_js: serde_json::Value = serde_json::from_str(&reqdata)?;
-//  let call = req_js["call"];
   let call = serde_json::json!(req_js["call"]);
   println!("handle_req call: {}", call);
   let reqdata_data = serde_json::json!(req_js["data"]);
@@ -69,7 +64,6 @@ fn handle_req(reqdata: String, handled_rsp: &mut String) -> serde_json::Result<(
 
 // 执行say_hello逻辑, 由say_hello返回执行结果
 fn say_hello() -> String {
-//  let sayhello = format!(r#"{{"hello": "halokid", "root": {{"sub": 29}}}}"#);
   let sayhello = r#"{"name": "halokid", "root": {"sub": 29}}"#.to_string();
   return sayhello;
 }
@@ -79,7 +73,6 @@ fn say_hi(reqdata_data: &serde_json::Value, handled_rsp: &mut String) -> serde_j
   let name = serde_json::json!(reqdata_data["name"]);
   let namex = name.as_str().unwrap();
 
-//  let namex = serde_json::json!(reqdata_data["name"]).as_str().unwrap();
   handled_rsp.push_str(&namex);
 
   Ok(())
@@ -87,11 +80,11 @@ fn say_hi(reqdata_data: &serde_json::Value, handled_rsp: &mut String) -> serde_j
 
 
 #[tokio::main]
-pub async fn run(addr: &String) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn main() -> Result<(), Box<dyn std::error::Error>> {
   // reg
-  let is_reg = reg::regiser(addr);
+  let addr = local_ipaddress::get().unwrap();
+  let is_reg = reg::regiser(&addr);
   if !is_reg {
-    // Err(std::error::Error)
     println!("成功注册 porust: {}", addr);
   } else {
     println!("------注册失败-----");
@@ -99,19 +92,6 @@ pub async fn run(addr: &String) -> Result<(), Box<dyn std::error::Error>> {
 
   // run
   let addr = addr.parse()?;
-  let pors = DoPors::default();     // 返回DoPors结构体的默认值
-
-  Server::builder().add_service(PorsServer::new(pors))
-    .serve(addr)
-    .await?;
-
-  Ok(())
-}
-
-
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-  let addr = "127.0.0.1:18080".parse()?;
   let pors = DoPors::default();     // 返回DoPors结构体的默认值
 
   Server::builder().add_service(PorsServer::new(pors))
