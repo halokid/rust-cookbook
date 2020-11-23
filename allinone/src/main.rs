@@ -10,6 +10,9 @@ pub mod errors_handle;
 pub mod crate_mod;
 pub mod inherit;
 pub mod interface;
+pub mod config;
+pub mod read_config;
+pub mod config3;
 
 // extern crate local_ipaddress;  // 引入外部crate 方式2
 use local_ipaddress;        // 引入外部的crate 方式1
@@ -94,6 +97,10 @@ fn main() {
   interface::comm2();
   interface::comm3();
 
+  // ========== 读取配置 =================
+  config::comm();     // 1
+  read_config::comm();      // 2
+  config3::comm();
 }
 
 /// 外部注释

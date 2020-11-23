@@ -20,7 +20,9 @@ name = "allinone"
 version = "0.1.0"
 dependencies = [
  "consul-rs",
+ "lazy_static",
  "local_ipaddress",
+ "serde",
 ]
 
 [[package]]

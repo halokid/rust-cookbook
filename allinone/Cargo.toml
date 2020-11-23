@@ -10,6 +10,8 @@ edition = "2018"
 consul-rs = {git = "https://github.com/liyiheng/consul-rs", branch = "master"}
 #local-ip = "0.1"
 local_ipaddress = "0.1.3"
+serde = "1.0.117"
+lazy_static = "1.4.0"
 
 #[dependencies.pnet]
 #version = "0.26.0"

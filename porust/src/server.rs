@@ -6,6 +6,7 @@ use po_rust::{Req, Rsp};
 use po_rust::pors_server::{Pors, PorsServer};
 
 #[path = "reg.rs"] mod reg;     // todo: 假如有不同的bin， 出现发现不了mod的情况，可以这样做
+#[path = "config.rs"] mod config;
 
 // todo: 装载proto生成的库
 pub mod po_rust {
@@ -81,6 +82,9 @@ fn say_hi(reqdata_data: &serde_json::Value, handled_rsp: &mut String) -> serde_j
 
 #[tokio::main]
 pub async fn main() -> Result<(), Box<dyn std::error::Error>> {
+  // init
+
+
   // reg
   let addr = local_ipaddress::get().unwrap();
   let is_reg = reg::regiser(&addr);
