@@ -76,6 +76,7 @@ fn main() {
   // ================ String 集合 ================
   string::comm();
 
+  /*
   // =============== Hashmap 集合 ===============
   hashmap::comm();
 
@@ -101,6 +102,8 @@ fn main() {
   config::comm();     // 1
   read_config::comm();      // 2
   config3::comm();
+
+   */
 }
 
 /// 外部注释

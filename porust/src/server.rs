@@ -83,23 +83,27 @@ fn say_hi(reqdata_data: &serde_json::Value, handled_rsp: &mut String) -> serde_j
 #[tokio::main]
 pub async fn main() -> Result<(), Box<dyn std::error::Error>> {
   // init
-
+  println!("CFG-- env: {}", config::CFG["env"]);
 
   // reg
   let addr = local_ipaddress::get().unwrap();
-  let is_reg = reg::regiser(&addr);
-  if !is_reg {
-    println!("成功注册 porust: {}", addr);
+  println!("addr----{}", addr);
+  // let s = String::from("127.0.0.1");
+  let sp = addr + ":18080";
+  let serv_addr = (&sp).parse()?;
+  // let addr = "127.0.0.1:18080".parse()?;
+  let is_reg = reg::regiser(&sp);
+  if is_reg {
+    println!("成功注册 porust: {}", sp);
   } else {
     println!("------注册失败-----");
   }
 
   // run
-  let addr = addr.parse()?;
   let pors = DoPors::default();     // 返回DoPors结构体的默认值
 
   Server::builder().add_service(PorsServer::new(pors))
-    .serve(addr)
+    .serve(serv_addr)
     .await?;
 
   Ok(())
