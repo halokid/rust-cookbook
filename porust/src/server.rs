@@ -51,6 +51,9 @@ impl Pors for DoPors {
 fn handle_req(reqdata: String, handled_rsp: &mut String) -> serde_json::Result<()> {
   // 统一处理req的数据， 分发call的方法
   // todo: 根据reqdata指定call的方法执行
+  /* 请求的数据格式:
+  {"call": "say_hi", "data": {"name": "halokid"}}
+   */
   let req_js: serde_json::Value = serde_json::from_str(&reqdata)?;
   let call = serde_json::json!(req_js["call"]);
   println!("handle_req call: {}", call);
@@ -70,10 +73,12 @@ fn say_hello() -> String {
 }
 
 fn say_hi(reqdata_data: &serde_json::Value, handled_rsp: &mut String) -> serde_json::Result<()> {
+  // {"call": "say_hi", "data": {"name": "halokid"}}
   println!("say_hi handle: {}", reqdata_data);
   let name = serde_json::json!(reqdata_data["name"]);
   let namex = name.as_str().unwrap();
 
+  // 把namex的值写进 rspdata
   handled_rsp.push_str(&namex);
 
   Ok(())
