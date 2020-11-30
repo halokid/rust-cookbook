@@ -60,7 +60,27 @@ fn test_read_data() {
     println!("y {}", y);
   }
 
+  // count iter length
+  // let iterx = con.scan_match("*").unwrap();
+  let iterx = con.scan_match("halokid-*").unwrap();
+  let mut i: i32 = 0;
+  for key in iterx {
+    if i > 0 {
+      break
+    }
+    let key: String = key;
+    let mut con = client.get_connection().unwrap();
+    let val: String = con.get(&key).unwrap();
+    // let val: String = con.get("halokid-xxx").unwrap();
+    println!("循环获取key: {}, value: {}", key, val);
+
+    i += 1
+  }
+  println!("length of iterx is {}", i);
 }
+
+
+
 
 
 
