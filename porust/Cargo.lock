@@ -1333,6 +1333,7 @@ dependencies = [
  "tokio 0.2.22",
  "tonic",
  "tonic-build",
+ "typename",
 ]
 
 [[package]]
@@ -2358,6 +2359,25 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "283d3b89e1368717881a9d51dad843cc435380d8109c9e47d38780a324698d8b"
 dependencies = [
  "cfg-if 0.1.10",
+]
+
+[[package]]
+name = "typename"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c255dd1af8cf5cfb95f062266201778080d215e86294dba14c47bf3137c55419"
+dependencies = [
+ "typename_derive",
+]
+
+[[package]]
+name = "typename_derive"
+version = "0.1.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c68acf2f6e8a32e2bad47e73ee177558583fb9dbb264a5c0569c7f9f80f79b0a"
+dependencies = [
+ "quote",
+ "syn",
 ]
 
 [[package]]

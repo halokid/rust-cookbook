@@ -5,6 +5,7 @@ rds service
 extern crate redis;
 use redis::Commands;
 use self::redis::{RedisResult, RedisError};
+use serde_json::json;
 
 fn read_data(reqdata_data: &serde_json::Value, handled_rsp: &mut String) -> serde_json::Result<()> {
   // {"call": "read_data", "data": {"key": "halokid"}}
@@ -28,7 +29,9 @@ fn test_read_data() {
   // let data = get();
   // println!("data: {}", data);
 
-  let client = redis::Client::open("redis://:mypassword@127.0.0.1:6379/0", ).unwrap();
+  // let client = redis::Client::open("redis://:mypassword@127.0.0.1:6379/0", ).unwrap();
+  // todo: 密码里面包含的特殊字符要用url编码, 比如#
+  let client = redis::Client::open("redis://:d0%23@xxxxx:6379/7", ).unwrap();
   let mut con = client.get_connection().unwrap();
 
   // get key
@@ -36,16 +39,16 @@ fn test_read_data() {
   println!("get val: {}", val);
 
   // search key
-  let val: Vec<String> = redis::cmd("KEYS").arg("*").query(&mut con).unwrap();
+  let val: Vec<String> = redis::cmd("KEYS").arg("halokid-*").query(&mut con).unwrap();
   println!("val {}", val[0]);
 
   let mut i: i32 = 0;
-  con.scan_match("*").unwrap().for_each(|s: String| {
+  con.scan_match("halokid-*").unwrap().for_each(|s: String| {
     println!("i: {}, s: {}", i, s);
     i += 1;
   });
 
-  let iter = con.scan_match("*").unwrap();
+  let iter = con.scan_match("halokid-*").unwrap();
   // println!("iter {}", iter);
 
   // todo: 匹配迭代器的元素类型
@@ -54,7 +57,7 @@ fn test_read_data() {
     println!("x {}", x);
   }
 
-  let iter = con.scan_match("*").unwrap();
+  let iter = con.scan_match("halokid-*").unwrap();
   for y in iter {
     let y: usize = y;
     println!("y {}", y);
@@ -70,13 +73,21 @@ fn test_read_data() {
     }
     let key: String = key;
     let mut con = client.get_connection().unwrap();
-    let val: String = con.get(&key).unwrap();
+    let valx: String = con.get(&key).unwrap();
     // let val: String = con.get("halokid-xxx").unwrap();
-    println!("循环获取key: {}, value: {}", key, val);
+    println!("循环获取key: {}, value: {}", key, valx);
+
+    // 转json
+    let valx_js: serde_json::Value = serde_json::from_str(&valx).unwrap();
+    println!("valx_js: {}", valx_js);
+
+    let user_data = js
 
     i += 1
   }
   println!("length of iterx is {}", i);
+
+  // println!("循环之外的valx: {}", valx);      // todo: 生命周期只在for之内， 会报错
 }
 
 
