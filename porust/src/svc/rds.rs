@@ -81,8 +81,6 @@ fn test_read_data() {
     let valx_js: serde_json::Value = serde_json::from_str(&valx).unwrap();
     println!("valx_js: {}", valx_js);
 
-    let user_data = js
-
     i += 1
   }
   println!("length of iterx is {}", i);
