@@ -11,7 +11,8 @@ import (
 
 const (
   //address  = "127.0.0.1:18080"
-  address  = "172.21.29.32:18080"
+  //address  = "172.21.29.32:18080"
+  address  = "192.168.1.101:18080"
 )
 
 func main() {
@@ -32,8 +33,8 @@ func main() {
   rsp, err := c.Invoke(context.Background(), &pb.Req{ Reqdata: name })
   */
 
-  // todo: call say_hi
-  reqData := `{"call": "say_hi", "data": {"name": "halokid"}}`
+  // todo: call porust.say_hi
+  reqData := `{"call": "porust.say_hi", "data": {"name": "halokid"}}`
   rsp, err := c.Invoke(context.Background(), &pb.Req{ Reqdata: reqData })
 
   if err != nil {
@@ -42,7 +43,7 @@ func main() {
   log.Printf("say_hi---rsp type: %+v, struct: %+v, val: %+v", reflect.TypeOf(rsp), rsp, rsp.Rspdata)
 
   // todo: call read data
-  reqData = `{"call": "read_data", "data": {"key": "halokid"}}`
+  reqData = `{"call": "porust.read_data", "data": {"key": "halokid"}}`
   rsp, err = c.Invoke(context.Background(), &pb.Req{ Reqdata: reqData })
   if err != nil {
     log.Fatalf("could not greet: %v", err)

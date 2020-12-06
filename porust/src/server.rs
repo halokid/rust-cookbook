@@ -59,7 +59,8 @@ fn handle_req(reqdata: String, handled_rsp: &mut String) -> serde_json::Result<(
   println!("handle_req call: {}", call);
   let reqdata_data = serde_json::json!(req_js["data"]);
 
-  if call == "say_hi" {
+  // todo: 格式为 svc.method
+  if call == "porust.say_hi" {
     say_hi(&reqdata_data, handled_rsp);
   }
 

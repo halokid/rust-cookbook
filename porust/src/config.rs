@@ -9,7 +9,7 @@ lazy_static! {
     #[derive(Debug)]
     pub static ref CFG: HashMap<&'static str, &'static str> = {
         let mut m = HashMap::new();
-        let env = "test";
+        let env = "dev";
         m.insert("env", env);
         if env == "test" {
           println!("------ 测试环境 ------");
@@ -19,6 +19,10 @@ lazy_static! {
           println!("------ 生产环境 ------");
           m.insert("consul_addr", "10.87.134.91");
           m.insert("consul_port", "32350");
+        } else if env == "dev" {
+          println!("------ 开发环境 ------");
+          m.insert("consul_addr", "127.0.0.1");
+          m.insert("consul_port", "8500");
         }
 
         m
