@@ -13,10 +13,15 @@ pub mod interface;
 pub mod config;
 pub mod read_config;
 pub mod config3;
+pub mod person;
+pub mod clone;
+pub mod loopx;
+pub mod foobar;
 
 // extern crate local_ipaddress;  // 引入外部crate 方式2
 use local_ipaddress;        // 引入外部的crate 方式1
 
+#[allow(dead_code)]
 fn main() {
   println!("Hello, world!");
   println!("{}, {}!", "hello", "world");
@@ -75,6 +80,15 @@ fn main() {
 
   // ================ String 集合 ================
   string::comm();
+
+  person::comm();
+
+  clone::comm();
+
+  loopx::comm();
+
+  foobar::comm();
+
 
   /*
   // =============== Hashmap 集合 ===============

@@ -15,6 +15,10 @@ pub mod config;
 pub mod read_config;
 pub mod config2;
 pub mod config3;
+pub mod person;
+pub mod clone;
+pub mod loopx;
+pub mod foobar;
 
 // ================== 集成测试 ===================
 /*
