@@ -19,6 +19,7 @@ pub mod person;
 pub mod clone;
 pub mod loopx;
 pub mod foobar;
+pub mod defer;
 
 // ================== 集成测试 ===================
 /*
