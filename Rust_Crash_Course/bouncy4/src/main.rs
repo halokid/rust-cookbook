@@ -1,5 +1,10 @@
 
 mod mutx;
+mod les4_1;
+mod les5_1;
+mod les5_1_1;
+mod les5_1_2;
+mod bibao;
 
 use std::fmt::{Display, Formatter};
 use std::slice::from_raw_parts;
@@ -87,6 +92,8 @@ impl Ball {
 impl Display for Game {
 
   fn fmt(&self, fmt: &mut Formatter) -> std::fmt::Result {
+
+    // todo: lambda 的语法
     let top_bottom = | fmt: &mut Formatter | {
       write!(fmt, "+");
       for _ in 0..self.frame.width {
@@ -128,7 +135,18 @@ fn main() {
   }
    */
 
-  mutx::comm();
+  // mutx::comm();
+
+  // les4_1::comm();
+
+  // les5_1::comm();
+
+  // les5_1_1::comm();
+
+  // les5_1_2::comm();
+
+  // bibao::comm();
+  bibao::comm2();
 }
 
 
