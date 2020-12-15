@@ -5,6 +5,7 @@ mod les5_1;
 mod les5_1_1;
 mod les5_1_2;
 mod bibao;
+mod movex;
 
 use std::fmt::{Display, Formatter};
 use std::slice::from_raw_parts;
@@ -146,7 +147,13 @@ fn main() {
   // les5_1_2::comm();
 
   // bibao::comm();
-  bibao::comm2();
+  // bibao::comm2();
+  // bibao::comm4();
+  // bibao::comm5();
+
+  // movex::comm1();
+  // movex::comm2();
+  movex::comm3();
 }
 
 
