@@ -1,9 +1,9 @@
 mod replace_callback;
 
-extern crate gtk;
+// extern crate gtk;
 
-use gtk::prelude::*;
-use gtk::{Button, Window, WindowType};
+// use gtk::prelude::*;
+// use gtk::{Button, Window, WindowType};
 
 fn main() {
   /*
@@ -33,4 +33,9 @@ fn main() {
    */
 
 
+  // replace_callback::comm2();
+  replace_callback::comm3();
+
 }
+
+
