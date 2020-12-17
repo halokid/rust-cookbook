@@ -28,7 +28,7 @@ fn print_person(mut person: Person) {
   // }
 
   match person.age {
-    Some(ref mut age) => {
+    Some(ref mut age) => {    // todo: ref的作用就是一个可以修改原始值的引用
       println!("Age is {}", age);
       *age += 1;
     }
