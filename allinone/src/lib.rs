@@ -20,6 +20,7 @@ pub mod clone;
 pub mod loopx;
 pub mod foobar;
 pub mod defer;
+pub mod dynx;
 
 // ================== 集成测试 ===================
 /*
