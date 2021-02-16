@@ -1,0 +1,18 @@
+[package]
+name = "factory"
+version = "0.1.0"
+authors = ["mm jxx <r00txxyyzz@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+# run: cargo run --bin $name
+[[bin]]
+name = "c1"
+path = "src/c1.rs"
+
+[[bin]]
+name = "c2"
+path = "src/c2.rs"
+
+[dependencies]
