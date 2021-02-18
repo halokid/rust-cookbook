@@ -11,10 +11,13 @@ edition = "2018"
 name = "factory_c1"
 path = "src/factory/c1.rs"
 
-
 [[bin]]
 name = "factory_c2"
 path = "src/factory/c2.rs"
+
+[[bin]]
+name = "singleton_c1"
+path = "src/singleton/c1.rs"
 
 
 [dependencies]
