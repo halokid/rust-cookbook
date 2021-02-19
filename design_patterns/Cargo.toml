@@ -19,5 +19,15 @@ path = "src/factory/c2.rs"
 name = "singleton_c1"
 path = "src/singleton/c1.rs"
 
+[[bin]]
+name = "singleton_c2"
+path = "src/singleton/c2.rs"
+
 
 [dependencies]
+
+
+
+
+
+
