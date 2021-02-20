@@ -23,6 +23,14 @@ path = "src/singleton/c1.rs"
 name = "singleton_c2"
 path = "src/singleton/c2.rs"
 
+[[bin]]
+name = "builder_c1"
+path = "src/builder/c1.rs"
+
+[[bin]]
+name = "prototype_c1"
+path = "src/prototype/c1.rs"
+
 
 [dependencies]
 

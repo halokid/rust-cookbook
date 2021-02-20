@@ -38,7 +38,7 @@ trait Builder {
 // ----------------------------------------------------
 // todo: 3. 实体构建者类
 struct AliceBuilder {
-  obj:    Person        // 实例化
+  obj:    Person,        // 实例化
 }
 
 impl AliceBuilder {
@@ -61,16 +61,32 @@ impl Builder for AliceBuilder {
 
 // todo: 4. 主导类 Director
 struct PersonDirector {
-  build:  Box<dyn Builder>,
+  build:  Box<dyn Builder>,   // todo: 指向抽象构建类
 }
 
-impl PersonDirect {
+impl PersonDirector {
   fn new(b :Box<dyn Builder>) -> PersonDirector {
     PersonDirector {
       build: b,
     }
   }
+
+  fn build(&mut self) -> Person {
+    self.build.build_job();     // todo: 这里只有方法调用， 不指定参数
+    self.build.build()
+  }
 }
+
+fn main() {
+  // todo:  from struct abstract to trait
+  let alice_builder = Box::new(AliceBuilder::new()) as Box<dyn Builder>;
+
+  let mut director = PersonDirector::new(alice_builder);
+  let alice = director.build();
+
+  println!("alice: {:?}", alice);
+}
+
 
 
 
