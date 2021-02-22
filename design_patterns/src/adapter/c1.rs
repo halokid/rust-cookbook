@@ -47,6 +47,7 @@ fn main() {
   use_via_adapter(&obj_y);
 }
 
+// todo: 通往各个不兼容接口的桥梁
 fn use_via_adapter(adapter:  &dyn Adapter) {
   println!("通过adapter来调度object, a = {}, b = {}", adapter.get_a(), adapter.get_b());
 }

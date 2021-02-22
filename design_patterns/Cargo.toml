@@ -31,6 +31,14 @@ path = "src/builder/c1.rs"
 name = "prototype_c1"
 path = "src/prototype/c1.rs"
 
+[[bin]]
+name = "adapter_c1"
+path = "src/adapter/c1.rs"
+
+[[bin]]
+name = "bridge_c1"
+path = "src/bridge/c1.rs"
+
 
 [dependencies]
 
