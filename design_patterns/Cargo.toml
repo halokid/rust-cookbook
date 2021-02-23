@@ -39,6 +39,18 @@ path = "src/adapter/c1.rs"
 name = "bridge_c1"
 path = "src/bridge/c1.rs"
 
+[[bin]]
+name = "decorator_c1"
+path = "src/decorator/c1.rs"
+
+[[bin]]
+name = "flyweight_c1"
+path = "src/flyweight/c1.rs"
+
+[[bin]]
+name = "proxy_c1"
+path = "src/proxy/c1.rs"
+
 
 [dependencies]
 
