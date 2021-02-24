@@ -11,6 +11,10 @@ mod facade;
 mod flyweight;
 mod proxy;
 mod chain_of_responsibility;
+mod command;
+mod interpreter;
+mod iterator;
+mod mediator;
 
 fn main() {
     println!("Hello, world!");
