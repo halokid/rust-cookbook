@@ -15,6 +15,11 @@ mod command;
 mod interpreter;
 mod iterator;
 mod mediator;
+mod memento;
+mod observer;
+mod state;
+mod template;
+mod visitor;
 
 fn main() {
     println!("Hello, world!");
