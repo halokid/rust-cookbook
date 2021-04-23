@@ -17,6 +17,8 @@ pub mod person;
 pub mod clone;
 pub mod loopx;
 pub mod foobar;
+pub mod mysql;
+
 
 // extern crate local_ipaddress;  // 引入外部crate 方式2
 use local_ipaddress;        // 引入外部的crate 方式1
@@ -89,6 +91,7 @@ fn main() {
 
   foobar::comm();
 
+  // mysql::comm();
 
   /*
   // =============== Hashmap 集合 ===============

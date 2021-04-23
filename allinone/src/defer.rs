@@ -7,6 +7,18 @@ impl Drop for Foobar {
     println!("Dropping a Foobar: {:?}", self);
   }
 }
+/**
+输出:
+Before x
+After x
+Before y
+After y
+Dropping a Foobar: Foobar(2)
+End of main
+Dropping a Foobar: Foobar(1)
+*/
+
+
 
 fn main() {
   println!("Before x");
@@ -21,15 +33,4 @@ fn main() {
   // todo: 这句执行完之后， 程序会回收 _x 的生命周期， 会触发Drop impl
   println!("End of main");
 }
-
-/**
-输出:
-Before x
-After x
-Before y
-After y
-Dropping a Foobar: Foobar(2)
-End of main
-Dropping a Foobar: Foobar(1)
-*/
 

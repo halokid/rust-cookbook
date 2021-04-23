@@ -21,6 +21,13 @@ pub mod loopx;
 pub mod foobar;
 pub mod defer;
 pub mod dynx;
+pub mod mysql;
+pub mod server_c1;
+pub mod server_c2;
+pub mod client_iter1;
+pub mod client_iter2;
+pub mod client_iter3;
+pub mod async_c1;
 
 // ================== 集成测试 ===================
 /*
