@@ -1,5 +1,9 @@
 
 
+/*
+接收数据是泛型数据 [T]
+返回数据是泛型类型 T
+ */
 fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
   let mut largest = list[0];
 
