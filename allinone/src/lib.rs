@@ -28,6 +28,7 @@ pub mod client_iter1;
 pub mod client_iter2;
 pub mod client_iter3;
 pub mod async_c1;
+pub mod json_string;
 
 // ================== 集成测试 ===================
 /*

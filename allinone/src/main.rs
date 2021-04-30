@@ -18,13 +18,16 @@ pub mod clone;
 pub mod loopx;
 pub mod foobar;
 pub mod mysql;
-
+pub mod json_string;
 
 // extern crate local_ipaddress;  // 引入外部crate 方式2
 use local_ipaddress;        // 引入外部的crate 方式1
 
 #[allow(dead_code)]
 fn main() {
+  json_string::comm();
+  std::process::exit(0);
+
   println!("Hello, world!");
   println!("{}, {}!", "hello", "world");
   println!("{0}, {1}", "hello", "world");
@@ -90,6 +93,8 @@ fn main() {
   loopx::comm();
 
   foobar::comm();
+
+
 
   // mysql::comm();
 

@@ -24,6 +24,7 @@ dependencies = [
  "lazy_static",
  "local_ipaddress",
  "serde",
+ "serde_json",
 ]
 
 [[package]]
