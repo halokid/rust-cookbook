@@ -19,13 +19,19 @@ pub mod loopx;
 pub mod foobar;
 pub mod mysql;
 pub mod json_string;
+pub mod async_block;
+pub mod async_no_block;
+pub mod async_no_block1;
 
 // extern crate local_ipaddress;  // 引入外部crate 方式2
 use local_ipaddress;        // 引入外部的crate 方式1
 
 #[allow(dead_code)]
 fn main() {
-  json_string::comm();
+  // json_string::comm();
+  // async_block::comm();
+  // async_no_block::comm();
+  async_no_block1::comm();
   std::process::exit(0);
 
   println!("Hello, world!");
