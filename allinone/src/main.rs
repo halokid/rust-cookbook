@@ -22,6 +22,7 @@ pub mod json_string;
 pub mod async_block;
 pub mod async_no_block;
 pub mod async_no_block1;
+pub mod closure_futures_async_await;
 
 // extern crate local_ipaddress;  // 引入外部crate 方式2
 use local_ipaddress;        // 引入外部的crate 方式1
@@ -31,7 +32,13 @@ fn main() {
   // json_string::comm();
   // async_block::comm();
   // async_no_block::comm();
-  async_no_block1::comm();
+  // async_no_block1::comm();
+
+  // todo: 引用文件夹里面的函数
+  // closure_futures_async_await::p1::comm();
+  // closure_futures_async_await::p2::comm();
+  // closure_futures_async_await::p3::comm();
+  closure_futures_async_await::p3::comm2();
   std::process::exit(0);
 
   println!("Hello, world!");
