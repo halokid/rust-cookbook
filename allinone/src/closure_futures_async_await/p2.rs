@@ -58,8 +58,28 @@ pub fn comm() {
 }
 
 
-
-
+// todo: Future Chaining 的写法, 线程链， 线程链实现同一个数据流转分阶段处理的逻辑
+/*
+fn returns_future_chain() -> impl Future<Output = ()> {
+    future::lazy(|_| debug!("in returns_future_chain()"))
+        .then(|_| {
+            debug!("in first then");
+            future::ready("Hello from rt.block_on()")
+        })
+        .inspect(|result| debug!("future::ready() -> {}", result))
+        .then(|_| returns_impl_future_i32())
+        .inspect(|result| debug!("returns_impl_future_i32() -> {}", result))
+        .then(|_| returns_dyn_future_i32())
+        .inspect(|result| debug!("returns_dyn_future_i32() -> {}", result))
+        .then(|_| returns_future_result())
+        .map(|result| result.unwrap())
+        .inspect(|result| debug!("returns_future_result().unwrap() -> {}", result))
+        .then(|_| {
+            debug!("in last then");
+            future::ready(())
+        })
+}
+ */
 
 
 

@@ -24,11 +24,53 @@ pub mod async_no_block;
 pub mod async_no_block1;
 pub mod closure_futures_async_await;
 
+use log::debug;
+use simplelog::{ConfigBuilder, LevelFilter, SimpleLogger};
+
 // extern crate local_ipaddress;  // 引入外部crate 方式2
-use local_ipaddress;        // 引入外部的crate 方式1
+use local_ipaddress;
+use futures::{Future, FutureExt};        // 引入外部的crate 方式1
+use futures;
+use std::pin::Pin;
+use std::error::Error;
+use std::convert::Infallible;
+use std::time::Duration;
+use tokio::time::delay_for;
+
+// todo: Box的返回是表示该函数返回的数据 夺取了控制权
+// todo: dyn 是表示 trait 的多态
+// todo: 不返回Pin的话会报错, trait `std::marker::Unpin` is not implemented for `dyn core::future::future::Future<Output = i32>
+fn returns_dyn_future_i32() -> Pin<Box<dyn Future<Output = i32>>> {
+  if rand::random() {
+    Box::pin((futures::future::ready(42)))
+  } else {
+    Box::pin(futures::future::lazy(|_| 1337))
+  }
+}
+
+// todo: Infallible 是返回特定的类型， 并且有这个类型的内存声明和长度的
+// todo: Infallible 跟返回一个类型的实行用 Box 包住的作用差不多
+fn return_future_result() -> impl Future<Output = Result<i32, impl Error>> {
+  futures::future::ok::<i32, Infallible>(42)
+}
+
+// todo: 线程延时
+fn returns_delayed_future() -> impl Future<Output = i32> {
+  delay_for(Duration::from_secs(3))
+    .then(|_| futures::future::ready(42))
+}
+
+
 
 #[allow(dead_code)]
 fn main() {
+  // init log, 初始化log模块
+  let config = ConfigBuilder::new()
+    .set_target_level(LevelFilter::Trace)
+    .build();
+  let _ = SimpleLogger::init(LevelFilter::Debug, config);
+
+
   // json_string::comm();
   // async_block::comm();
   // async_no_block::comm();
@@ -38,7 +80,19 @@ fn main() {
   // closure_futures_async_await::p1::comm();
   // closure_futures_async_await::p2::comm();
   // closure_futures_async_await::p3::comm();
-  closure_futures_async_await::p3::comm2();
+  // closure_futures_async_await::p3::comm2();
+  // closure_futures_async_await::p5::comm1();
+  // futures::future::ready(42);     // todo: 这样是不会执行的, 加上.await也不行
+
+  let mut rt = tokio::runtime::Runtime::new().unwrap();
+  {
+    let result = rt.block_on(futures::future::ready("x rt.block_on()"));
+    debug!("{}", result);
+  }
+
+  rt.block_on(returns_dyn_future_i32());
+
+  /*
   std::process::exit(0);
 
   println!("Hello, world!");
@@ -187,7 +241,10 @@ mod tests {
   fn it_worksx() {
     assert_eq!(4, plus(2, 2));
   }
+
+   */
 }
+
 
 
 
