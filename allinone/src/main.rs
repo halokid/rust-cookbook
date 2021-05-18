@@ -23,6 +23,7 @@ pub mod async_block;
 pub mod async_no_block;
 pub mod async_no_block1;
 pub mod closure_futures_async_await;
+pub mod encrypt;
 
 use log::debug;
 use simplelog::{ConfigBuilder, LevelFilter, SimpleLogger};
@@ -70,6 +71,8 @@ fn main() {
     .build();
   let _ = SimpleLogger::init(LevelFilter::Debug, config);
 
+  encrypt::comm1();
+  std::process::exit(0);
 
   // json_string::comm();
   // async_block::comm();
