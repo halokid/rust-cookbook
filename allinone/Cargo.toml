@@ -19,6 +19,7 @@ log = "0.4.14"
 simplelog = "0.10.0"
 rand = "0.7.3"
 rustc-serialize = "0.3"
+base64 = "0.13.0"
 
 
 #mysql = "*"
