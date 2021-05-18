@@ -1,6 +1,5 @@
-
-use tokio;
 use futures::future;
+use tokio;
 
 async fn async_hello() {
   println!("hello, async hello");
@@ -28,9 +27,9 @@ pub fn comm2() {
   };
   rt.block_on(async_capture);
 
-      let y = 43;
-    let async_capture = future::lazy(|_| {
-      println!("in async_capture2, y => {}", y);
-    });
-    rt.block_on(async_capture);
+  let y = 43;
+  let async_capture = future::lazy(|_| {
+    println!("in async_capture2, y => {}", y);
+  });
+  rt.block_on(async_capture);
 }

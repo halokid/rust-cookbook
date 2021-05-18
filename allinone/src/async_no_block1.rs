@@ -1,3 +1,6 @@
+/*
+下面的写法是类似go的sync.waitgroup写法，同时异步执行，然后统一在某一个位置等待所有异步的执行
+ */
 
 use futures::executor::block_on;
 use std::{thread, time};
