@@ -17,10 +17,25 @@ serde_json = "1.0"
 tokio = { version = "0.2", features = ["full"] }
 log = "0.4.14"
 simplelog = "0.10.0"
-rand = "0.7.3"
-rustc-serialize = "0.3"
+#rand = "0.7.3"
+#rustc-serialize = "0.3"
 base64 = "0.13.0"
+aes = "0.7.2"
+block-modes = "0.8.1"
+hex-literal = "0.3.1"
+#crypto = "0.2.0"
+rust-crypto = "^0.2"
+#rand = "0.8.3"
+libc = "^0.2"
+time = "^0.1"
+rand = "^0.3"
+rustc-serialize = "^0.3"
 
+
+#openssl = "0.9.24"
+#hex = "0.3.1"
+#otpauth = "0.2.7"
+#time = "0.1.40"
 
 #mysql = "*"
 #json支持(必须)

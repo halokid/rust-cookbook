@@ -47,9 +47,9 @@ pub fn comm1() {
   let res = hex_to_base64(foo_hex);
   println!("res 3 ----- {}", res);
 
-  let res1 = res.from_base64();
-  let res1 = base64::decode(res).unwrap();      // base64 decode
-  println!("res 4 ----- {}", res);
+  // let res1 = res.from_base64();
+  // let res1 = base64::decode(res).unwrap();      // base64 decode
+  // println!("res 4 ----- {}", res);
 }
 
 

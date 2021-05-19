@@ -25,6 +25,10 @@ pub mod async_no_block1;
 pub mod closure_futures_async_await;
 pub mod encrypt;
 pub mod encrypt2;
+pub mod aes;
+pub mod aes2;
+pub mod aes3;
+pub mod aes4;
 
 use log::debug;
 use simplelog::{ConfigBuilder, LevelFilter, SimpleLogger};
@@ -73,7 +77,10 @@ fn main() {
   let _ = SimpleLogger::init(LevelFilter::Debug, config);
 
   // encrypt::comm1();
-  encrypt2::comm();
+  // encrypt2::comm();
+  // aes::comm();
+  // aes2::comm();
+  aes4::aes_cbc_mode();
   std::process::exit(0);
 
   // json_string::comm();
