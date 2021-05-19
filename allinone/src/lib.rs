@@ -30,6 +30,8 @@ pub mod client_iter3;
 pub mod async_c1;
 pub mod json_string;
 pub mod closure_futures_async_await;
+pub mod base64;
+pub mod hmac;
 
 // ================== 集成测试 ===================
 /*
