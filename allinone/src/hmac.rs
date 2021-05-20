@@ -1,4 +1,4 @@
-
+/*
 extern crate crypto;
 extern crate rand;
 extern crate rustc_serialize;
@@ -35,6 +35,8 @@ pub fn comm() {
   let xx = hmac.result().code().to_hex();
   println!("{:?}", xx);
 }
+
+ */
 
 
 

@@ -32,6 +32,7 @@ pub mod aes4;
 pub mod hmac;
 pub mod hmac2;
 pub mod base64;
+pub mod mycrypto_encode;
 
 use log::debug;
 use simplelog::{ConfigBuilder, LevelFilter, SimpleLogger};
@@ -85,8 +86,9 @@ fn main() {
   // aes2::comm();
   // aes4::aes_cbc_mode();
   // hmac::comm();
-  base64::comm();
-  hmac2::comm();
+  // base64::comm();
+  // hmac2::comm();
+  mycrypto_encode::comm();
   std::process::exit(0);
 
   // json_string::comm();

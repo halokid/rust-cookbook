@@ -32,6 +32,8 @@ pub mod json_string;
 pub mod closure_futures_async_await;
 pub mod base64;
 pub mod hmac;
+pub mod mycrypto_encode;
+pub mod rocket_main;
 
 // ================== 集成测试 ===================
 /*
