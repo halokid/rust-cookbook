@@ -1,4 +1,4 @@
-
+extern crate rustc_serialize;
 extern crate crypto;
 extern crate rand;
 
@@ -6,6 +6,9 @@ use crypto::{ symmetriccipher, buffer, aes, blockmodes };
 use crypto::buffer::{ ReadBuffer, WriteBuffer, BufferResult };
 
 use rand::{ Rng, OsRng };
+use std::str;
+use self::rustc_serialize::hex::{ToHex, FromHex};
+use self::rustc_serialize::base64::ToBase64;
 
 // Encrypt a buffer with the given key and iv using
 // AES-256/CBC/Pkcs encryption.
@@ -50,7 +53,8 @@ fn encrypt(data: &[u8], key: &[u8], iv: &[u8]) -> Result<Vec<u8>, symmetricciphe
     // us that it stopped processing data due to not having any more data in the
     // input buffer.
     loop {
-        let result = try!(encryptor.encrypt(&mut read_buffer, &mut write_buffer, true));
+        // let result = try!(encryptor.encrypt(&mut read_buffer, &mut write_buffer, true));
+        let result =encryptor.encrypt(&mut read_buffer, &mut write_buffer, true).unwrap();
 
         // "write_buffer.take_read_buffer().take_remaining()" means:
         // from the writable buffer, create a new readable buffer which
@@ -87,7 +91,7 @@ fn decrypt(encrypted_data: &[u8], key: &[u8], iv: &[u8]) -> Result<Vec<u8>, symm
     let mut write_buffer = buffer::RefWriteBuffer::new(&mut buffer);
 
     loop {
-        let result = try!(decryptor.decrypt(&mut read_buffer, &mut write_buffer, true));
+        let result = decryptor.decrypt(&mut read_buffer, &mut write_buffer, true).unwrap();
         final_result.extend(write_buffer.take_read_buffer().take_remaining().iter().map(|&i| i));
         match result {
             BufferResult::BufferUnderflow => break,
@@ -115,9 +119,38 @@ pub fn aes_cbc_mode(){
     rng.fill_bytes(&mut iv);
 
     let encrypted_data = encrypt(message.as_bytes(), &key, &iv).ok().unwrap();
-    let decrypted_data = decrypt(&encrypted_data[..], &key, &iv).ok().unwrap();
+    // let encrypted_data = encrypt(message, &key, &iv).ok().unwrap();
+    println!("encrypted_data ------------- {:?}", encrypted_data);
 
-    assert!(message.as_bytes() == &decrypted_data[..]);
+    // aes加密之后不能直接string输出， 尝试用 base64 再加密输出string看看
+    let xx =  encrypted_data.to_vec();
+    // let yx = String::from_utf8_lossy(&xx);
+    let yx = String::from_utf8(xx).unwrap();
+    let sb = yx.as_bytes();
+    println!("sb ------ {:?}", sb);
+
+    // []byte 转化为 16进制
+    let yxzz = yx.as_str();
+    let foo_hex = yxzz.as_bytes().to_hex();
+    println!("foo_hex(16进制) ---------- {}", foo_hex);
+
+    // 16进制转化为 []byte
+    let foo_bs = foo_hex.from_hex().unwrap();
+    println!("foo_bs ---------- {:?}", foo_bs);
+
+    //  16进制用base64 encode
+    let res = foo_hex.from_hex().unwrap().to_base64(rustc_serialize::base64::STANDARD);
+    println!("res 1 ----- {}", res);
+
+
+
+    let decrypted_data = decrypt(&encrypted_data[..], &key, &iv).ok().unwrap();
+    println!("decrypted_data ---------------- {:?}", decrypted_data);
+
+    let sx = String::from_utf8(decrypted_data).unwrap();
+    println!("sx ----------- {}", sx);
+
+    // assert!(message.as_bytes() == &decrypted_data[..]);
 }
 
 
