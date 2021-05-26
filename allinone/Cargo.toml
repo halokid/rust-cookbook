@@ -62,9 +62,9 @@ hex = "0.4.3"
 #features = ["all-types", "runtime-async-std-rustls"]
 #optional = true
 
-[[bin]]
+#[[bin]]
 # run:  cargo run --bin pors-server
-name = "rocket"
-path = "src/rocket_main.rs"
+#name = "rocket"
+#path = "src/rocket_main.rs"
 
 

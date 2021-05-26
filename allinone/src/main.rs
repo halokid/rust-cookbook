@@ -33,6 +33,7 @@ pub mod hmac;
 pub mod hmac2;
 pub mod base64;
 pub mod mycrypto_encode;
+pub mod microsoft_guide;
 
 use log::debug;
 use simplelog::{ConfigBuilder, LevelFilter, SimpleLogger};
@@ -88,7 +89,8 @@ fn main() {
   // hmac::comm();
   // base64::comm();
   // hmac2::comm();
-  mycrypto_encode::comm();
+  // mycrypto_encode::comm();
+  microsoft_guide::car::comm();
   std::process::exit(0);
 
   // json_string::comm();
