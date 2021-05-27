@@ -43,3 +43,32 @@ pub fn comm2() {
 }
 
 
+// ---------------------------------------------------------------------
+
+struct Person {
+  first:    String,
+  middle:   Option<String>,
+  last:     String,
+}
+
+fn build_full_name(person: &Person) -> String {
+  let mut full_name = String::new();
+  full_name.push_str(&person.first);
+  let middle = &person.middle.unwrap_or(" ".to_string());
+  // full_name.push_str(&person.middle.unwrap_or(" ".to_string()));
+  full_name.push_stro_string(middle.as_ref());
+  full_name.push_str(&person.last);
+
+  full_name
+}
+
+pub fn comm3() {
+  let john = Person {
+    first: "James".to_string(),
+    middle: Some(String::from("Oliver")),
+    last: "Smith".to_string()
+  };
+  assert_eq!(build_full_name(&john), "James Oliver Smith")
+
+}
+
