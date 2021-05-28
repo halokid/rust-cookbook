@@ -7,7 +7,7 @@ static INTERF1: &str =  "6d7kb3za39";
 static INTERF2: &str =  "c560e7z988";
 
 pub fn comm() {
-  /*
+  // /*
   let msg = r#"{"name":"xxxxxxxxhalokid", "class":"xxxxxxxxxxxxxxxxxx"}"#;
   // hex encode
   let msg_hex = hex::encode(msg);
@@ -30,7 +30,7 @@ pub fn comm() {
 
   let msg_im_by_de = decode(&msg_im_by_en).unwrap();
   println!("msg_im_by_de ---------------- {}", str::from_utf8(&msg_im_by_de).unwrap());
-   */
+   // */
 
   let s = r#"{"name":"xxxxxxxxhalokid", "class":"xxxxxxxxxxxxxxxxxx"}"#;
   println!("s ------------------ {}", s);

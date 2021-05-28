@@ -43,7 +43,8 @@ fn read_file_contents(path: PathBuf) -> Result<String, IoError> {
 }
 
 pub fn comm2() {
-  assert_eq!(read_file_contents(PathBuf::from("src/main.rs")).is_ok());
+  assert!(read_file_contents(PathBuf::from("src/main.rs")).is_ok());
+  assert!(read_file_contents(PathBuf::from("non-exists-file.txt")).is_err());
 }
 
 
