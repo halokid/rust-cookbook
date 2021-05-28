@@ -54,11 +54,20 @@ struct Person {
 fn build_full_name(person: &Person) -> String {
   let mut full_name = String::new();
   full_name.push_str(&person.first);
-  let middle = &person.middle.unwrap_or(" ".to_string());
-  // full_name.push_str(&person.middle.unwrap_or(" ".to_string()));
-  full_name.push_stro_string(middle.as_ref());
-  full_name.push_str(&person.last);
+  full_name.push_str(" ");
+  // todo: 下面的都是错误的
+  // let middle = &person.middle.unwrap_or(" ".to_string());
+  // let x = &person.middle.as_ref();
+  // full_name.push_str(x.unwrap());
 
+  // todo: 要从 Option 取得所有权的方法如下
+  // todo: &&String 得到的类型就是 string
+  if let Some(middle) = &person.middle {
+    full_name.push_str(&middle);
+    full_name.push_str(" ");
+  }
+
+  full_name.push_str(&person.last);
   full_name
 }
 

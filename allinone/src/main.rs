@@ -93,7 +93,8 @@ fn main() {
   // microsoft_guide::car::comm();
   // microsoft_guide::loop_return::comm();
   // microsoft_guide::error_handle::comm();
-  microsoft_guide::error_handle::comm3();
+  // microsoft_guide::error_handle::comm3();
+  microsoft_guide::error_handle_result::comm();
   std::process::exit(0);
 
   // json_string::comm();
