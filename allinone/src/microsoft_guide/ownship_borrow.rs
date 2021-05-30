@@ -12,6 +12,12 @@ pub fn comm() {
 
   let mut change_ref = String::from("xxx");
   change(&mut change_ref);
+
+  let mut val = String::from("hello");
+
+  let ref1 = &val;
+  let ref2 = &mut val;
+  println!("{}, {}", ref1, ref2);
 }
 
 fn print_greeting(message: &String) {
