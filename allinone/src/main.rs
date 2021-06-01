@@ -97,7 +97,9 @@ fn main() {
   // microsoft_guide::error_handle_result::comm();
   // microsoft_guide::error_handle_result::comm2();
   // microsoft_guide::ownship::comm();
-  microsoft_guide::ownship_borrow::comm();
+  // microsoft_guide::ownship_borrow::comm();
+  // microsoft_guide::generic::comm();
+  microsoft_guide::trait_case::comm();
   std::process::exit(0);
 
   // json_string::comm();
