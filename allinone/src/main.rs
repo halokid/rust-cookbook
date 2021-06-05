@@ -99,7 +99,12 @@ fn main() {
   // microsoft_guide::ownship::comm();
   // microsoft_guide::ownship_borrow::comm();
   // microsoft_guide::generic::comm();
-  microsoft_guide::trait_case::comm();
+  // microsoft_guide::trait_case::comm2();
+  // microsoft_guide::trait_case2::comm();
+  // microsoft_guide::iterator::comm();
+  // microsoft_guide::genric2::comm();
+  // microsoft_guide::iterator2::comm();
+  microsoft_guide::package_crate_mod_guide::comm3();
   std::process::exit(0);
 
   // json_string::comm();

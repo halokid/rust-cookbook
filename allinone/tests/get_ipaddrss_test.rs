@@ -1,6 +1,7 @@
 //extern crate local_ip;
 use local_ipaddress;
 
+/*
 #[test]
 fn get_ip() {
 //  let ip = local_ip::get().unwrap();
@@ -8,3 +9,5 @@ fn get_ip() {
 
   println!("{}", local_ipaddress::get().unwrap());
 }
+
+ */

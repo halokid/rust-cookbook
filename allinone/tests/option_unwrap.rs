@@ -1,4 +1,4 @@
-
+/*
 fn give_commoner(gift: Option<&str>) {
   match gift {
     Some("snake") => println!("Yuck, fuck snake"),
@@ -12,3 +12,5 @@ fn give_commoner(gift: Option<&str>) {
 fn test_option_unwrap() {
 
 }
+
+ */
