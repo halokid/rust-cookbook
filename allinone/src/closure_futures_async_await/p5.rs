@@ -21,5 +21,19 @@ pub fn comm1() {
 
   rt.block_on(futures::future::lazy(|_| debug!("in rt.block_on()")));
 
-  debug!("只有rt.enter() 和 rt.block_on() 是跑在1线程(main线程)")
+  debug!("只有rt.enter() 和 rt.block_on() 是跑在1线程(main线程)");
+
+  // todo: 执行一个异步不阻塞的任务形式1
+  rt.enter(|| {
+    println!("in rt.enter()");
+    tokio::spawn(future::lazy(|_| println!("in tokio::spawn")));
+  });
+
+  // todo: 执行一个异步不阻塞的任务形式2
+  rt.spawn(future::lazy(|_| println!("in rt.spawn()")));
+
 }
+
+
+
+

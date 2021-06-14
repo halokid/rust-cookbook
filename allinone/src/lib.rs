@@ -35,6 +35,7 @@ pub mod hmac;
 pub mod mycrypto_encode;
 pub mod rocket_main;
 pub mod microsoft_guide;
+pub mod cmdargs;
 
 // ================== 集成测试 ===================
 /*
@@ -43,4 +44,9 @@ pub mod microsoft_guide;
 pub fn plus(x: i32, y: i32) -> i32 {
   x + y
 }
+
+
+
+
+
 

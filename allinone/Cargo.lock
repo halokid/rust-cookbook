@@ -36,6 +36,7 @@ dependencies = [
  "serde_json",
  "sha2",
  "simplelog",
+ "sna",
  "time",
  "tokio 0.2.24",
 ]
@@ -1559,6 +1560,12 @@ checksum = "f7b0758c52e15a8b5e3691eae6cc559f08eee9406e548a4477ba4e67770a82b6"
 dependencies = [
  "maybe-uninit",
 ]
+
+[[package]]
+name = "sna"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "52fda6818102f7805085aab16f5d840491e4580beed07d2f01cad557490861bd"
 
 [[package]]
 name = "string"

@@ -34,6 +34,10 @@ pub mod hmac2;
 pub mod base64;
 pub mod mycrypto_encode;
 pub mod microsoft_guide;
+pub mod timex;
+pub mod serial_number;
+pub mod primitives;
+pub mod cmdargs;
 
 use log::debug;
 use simplelog::{ConfigBuilder, LevelFilter, SimpleLogger};
@@ -71,7 +75,19 @@ fn returns_delayed_future() -> impl Future<Output = i32> {
     .then(|_| futures::future::ready(42))
 }
 
+pub trait SerialNumber: Sized + Copy + Eq {
+  fn sn_add(self, n: Self) -> Option<Self>;
+  fn sn_lt(self, n: Self) -> bool;
+}
 
+/*
+ The module contains implementations of SerialNumber for u8, u16, u32, u64;
+ in those, SERIAL_BITS is equal to each type's bit count.
+ */
+
+// todo: arbitrary SERIAL_BITS up to 64
+
+// todo: arbitrary SERIAL_BITS above 64
 
 #[allow(dead_code)]
 fn main() {
@@ -104,7 +120,11 @@ fn main() {
   // microsoft_guide::iterator::comm();
   // microsoft_guide::genric2::comm();
   // microsoft_guide::iterator2::comm();
-  microsoft_guide::package_crate_mod_guide::comm3();
+  // microsoft_guide::package_crate_mod_guide::comm3();
+  // timex::comm();
+  // serial_number::comm();
+  // primitives::comm();
+  cmdargs::comm();
   std::process::exit(0);
 
   // json_string::comm();
