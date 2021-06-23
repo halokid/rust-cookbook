@@ -34,6 +34,7 @@ pub mod hmac2;
 pub mod base64;
 pub mod mycrypto_encode;
 pub mod microsoft_guide;
+pub mod signal;
 
 use log::debug;
 use simplelog::{ConfigBuilder, LevelFilter, SimpleLogger};
@@ -104,7 +105,8 @@ fn main() {
   // microsoft_guide::iterator::comm();
   // microsoft_guide::genric2::comm();
   // microsoft_guide::iterator2::comm();
-  microsoft_guide::package_crate_mod_guide::comm3();
+  // microsoft_guide::package_crate_mod_guide::comm3();
+  signal::comm();
   std::process::exit(0);
 
   // json_string::comm();

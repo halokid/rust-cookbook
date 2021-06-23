@@ -35,6 +35,7 @@ pub mod hmac;
 pub mod mycrypto_encode;
 pub mod rocket_main;
 pub mod microsoft_guide;
+pub mod signal;
 
 // ================== 集成测试 ===================
 /*
