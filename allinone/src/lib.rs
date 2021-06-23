@@ -35,7 +35,11 @@ pub mod hmac;
 pub mod mycrypto_encode;
 pub mod rocket_main;
 pub mod microsoft_guide;
+<<<<<<< HEAD
 pub mod signal;
+=======
+pub mod cmdargs;
+>>>>>>> 903a6ced6cbb34ee4428eee2509dae4fd24edf54
 
 // ================== 集成测试 ===================
 /*
@@ -44,4 +48,9 @@ pub mod signal;
 pub fn plus(x: i32, y: i32) -> i32 {
   x + y
 }
+
+
+
+
+
 
