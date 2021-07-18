@@ -35,11 +35,9 @@ pub mod hmac;
 pub mod mycrypto_encode;
 pub mod rocket_main;
 pub mod microsoft_guide;
-<<<<<<< HEAD
 pub mod signal;
-=======
 pub mod cmdargs;
->>>>>>> 903a6ced6cbb34ee4428eee2509dae4fd24edf54
+pub mod async_send;
 
 // ================== 集成测试 ===================
 /*

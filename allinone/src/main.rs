@@ -34,14 +34,11 @@ pub mod hmac2;
 pub mod base64;
 pub mod mycrypto_encode;
 pub mod microsoft_guide;
-<<<<<<< HEAD
 pub mod signal;
-=======
 pub mod timex;
 pub mod serial_number;
 pub mod primitives;
 pub mod cmdargs;
->>>>>>> 903a6ced6cbb34ee4428eee2509dae4fd24edf54
 
 use log::debug;
 use simplelog::{ConfigBuilder, LevelFilter, SimpleLogger};
@@ -125,14 +122,11 @@ fn main() {
   // microsoft_guide::genric2::comm();
   // microsoft_guide::iterator2::comm();
   // microsoft_guide::package_crate_mod_guide::comm3();
-<<<<<<< HEAD
   signal::comm();
-=======
   // timex::comm();
   // serial_number::comm();
   // primitives::comm();
   cmdargs::comm();
->>>>>>> 903a6ced6cbb34ee4428eee2509dae4fd24edf54
   std::process::exit(0);
 
   // json_string::comm();

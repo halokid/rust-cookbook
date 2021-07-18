@@ -26,11 +26,11 @@ pub fn comm1() {
   // todo: 执行一个异步不阻塞的任务形式1
   rt.enter(|| {
     println!("in rt.enter()");
-    tokio::spawn(future::lazy(|_| println!("in tokio::spawn")));
+    tokio::spawn(futures::future::lazy(|_| println!("in tokio::spawn")));
   });
 
   // todo: 执行一个异步不阻塞的任务形式2
-  rt.spawn(future::lazy(|_| println!("in rt.spawn()")));
+  rt.spawn(futures::future::lazy(|_| println!("in rt.spawn()")));
 
 }
 
