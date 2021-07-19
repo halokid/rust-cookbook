@@ -1,0 +1,31 @@
+language: rust
+
+rust:
+    - stable
+    - beta
+    - nightly
+
+matrix:
+    fast_finish: true
+    allow_failures:
+        - rust: nightly
+    include:
+        - rust: nightly
+          before_script:
+          - rustup component add clippy-preview
+          script:
+          - cargo clippy --verbose -- -D warnings
+        - os: osx
+          rust: stable
+
+sudo: false
+dist: trusty
+
+cache:
+  apt: true
+  directories:
+    - target/debug/deps
+    - target/debug/build
+
+notifications:
+  email: false

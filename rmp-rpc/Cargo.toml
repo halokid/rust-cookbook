@@ -1,0 +1,43 @@
+[package]
+authors = ["Corentin Henry <corentinhenry@gmail.com>"]
+description = "a msgpack-rpc client and server based on tokio"
+homepage = "https://github.com/little-dude/rmp-rpc"
+keywords = [
+    "msgpack",
+    "rpc",
+    "msgpack-rpc",
+]
+license-file = "LICENSE-MIT"
+name = "rmp-rpc"
+readme = "README.md"
+repository = "https://github.com/little-dude/rmp-rpc"
+version = "0.3.1"
+edition = "2018"
+
+[dependencies]
+bytes = "1.0"
+futures = "0.3"
+log = "0.4"
+rmpv = "0.4"
+tokio = { version = "1.4", features = ["rt", "rt-multi-thread"] }
+tokio-util = { version = "0.6", features = ["codec", "compat"] }
+env_logger = "0.8"
+
+[dependencies.clippy]
+optional = true
+version = "^0.0"
+
+[dev-dependencies]
+env_logger = "0.8"
+chrono = "0.4"
+tokio = { version = "1.4", features = ["macros", "net", "time"] }
+
+[[bin]]
+name = "server"
+path = "examples/server.rs"
+
+[[bin]]
+# run: cargo run --bin client
+name = "client"
+path = "examples/client.rs"
+
