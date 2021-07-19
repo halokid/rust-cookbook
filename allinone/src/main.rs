@@ -39,6 +39,7 @@ pub mod timex;
 pub mod serial_number;
 pub mod primitives;
 pub mod cmdargs;
+pub mod structx;
 
 use log::debug;
 use simplelog::{ConfigBuilder, LevelFilter, SimpleLogger};
@@ -122,11 +123,12 @@ fn main() {
   // microsoft_guide::genric2::comm();
   // microsoft_guide::iterator2::comm();
   // microsoft_guide::package_crate_mod_guide::comm3();
-  signal::comm();
+  // signal::comm();
   // timex::comm();
   // serial_number::comm();
   // primitives::comm();
-  cmdargs::comm();
+  // cmdargs::comm();
+  structx::c1::comm();
   std::process::exit(0);
 
   // json_string::comm();
