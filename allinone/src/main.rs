@@ -40,6 +40,7 @@ pub mod serial_number;
 pub mod primitives;
 pub mod cmdargs;
 pub mod structx;
+pub mod futures_sample;
 
 use log::debug;
 use simplelog::{ConfigBuilder, LevelFilter, SimpleLogger};
@@ -128,7 +129,8 @@ fn main() {
   // serial_number::comm();
   // primitives::comm();
   // cmdargs::comm();
-  structx::c1::comm();
+  // structx::c1::comm();
+  futures_sample::c1::comm();
   std::process::exit(0);
 
   // json_string::comm();

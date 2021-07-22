@@ -39,6 +39,7 @@ pub mod signal;
 pub mod cmdargs;
 pub mod async_send;
 pub mod structx;
+mod futures_sample;
 
 // ================== 集成测试 ===================
 /*
