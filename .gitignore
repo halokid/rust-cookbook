@@ -37,3 +37,5 @@
 /design_patterns/.idea
 /design_patterns/target
 /rmp-rpc/.idea
+/tokio_tutorial/my-redis/target
+/tokio_tutorial/.idea
