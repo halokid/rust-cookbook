@@ -7,6 +7,7 @@ use std::option::Option::Some;
 use bytes::Bytes;
 use std::collections::HashMap;
 use std::sync::{ Arc, Mutex };
+use tokio::sync::mpsc;
 
 // todo： 全局声明变量
 type Db  = Arc<Mutex<HashMap<String, Bytes>>>;
@@ -14,6 +15,8 @@ type Db  = Arc<Mutex<HashMap<String, Bytes>>>;
 #[tokio::main]
 async fn main() {
 
+  /*
+  // todo: --------------- 一些试验代码 ----------------
   // todo: spawn 返回值
   // todo: 有些传递的 async 语句块是具有返回值的，调用者通过 JoinHandle 的 .await 来获取其返回值，
   let handle = tokio::spawn(async {
@@ -28,8 +31,21 @@ async fn main() {
     println!("task spawn");
     println!("v -------- {:?}", v);
   });
+   */
 
   // todo: -------------- 监听网络连接 --------------------
+  // Create a new channel with a capacity of at most 32
+  let (tx, mut rx) = mpsc::channel(32);
+  let tx2 = tx.clone();
+
+  tokio::spawn( async move {
+    tx.send("从 tx handle发送的数据").await;
+  });
+
+  tokio::spawn( async move {
+    tx.send("从 tx2 handle发送的数据").await;
+  });
+
   let listener = TcpListener::bind("127.0.0.1:6379").await.unwrap();
 
   // todo: -------------- 非并发处理 -----------------------
@@ -104,8 +120,10 @@ async fn process(socket: TcpStream) {
 }
  */
 
+// todo: Tutorial 4, Channel通道
 
-// todo: 各个线程之间共享db
+
+// todo: Tutorial 3, 线程间共享存储
 async fn process(socket: TcpStream, db: Db) {
   // let mut db = HashMap::new();
   let mut connection = Connection::new(socket);

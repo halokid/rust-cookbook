@@ -15,3 +15,7 @@ bytes = "1"
 name = "hello-redis"
 path = "example/hello_redis.rs"
 
+[[example]]
+name = "channel_sample"
+path = "example/channel_sample.rs"
+

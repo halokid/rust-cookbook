@@ -1,3 +1,5 @@
+mod channel_sample;
+
 use mini_redis::{client, Result};
 
 #[tokio::main]
