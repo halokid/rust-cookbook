@@ -8,9 +8,14 @@ edition = "2018"
 [dependencies]
 tokio = { version = "1", features = ["full"] }
 mini-redis = "0.4"
+bytes = "1"
 
 
 [[example]]
 name = "hello-redis"
 path = "example/hello_redis.rs"
+
+[[example]]
+name = "channel_sample"
+path = "example/channel_sample.rs"
 
