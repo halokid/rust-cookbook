@@ -1,4 +1,9 @@
 mod channel_sample;
+mod io_sample;
+mod async_future;
+mod impl_future_waker;
+mod select_sample;
+mod myselect;
 
 use mini_redis::{client, Result};
 

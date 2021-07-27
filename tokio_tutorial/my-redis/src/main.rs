@@ -16,7 +16,7 @@ enum Command {
 
   Set {
     key: String,
-    val: Bytes,
+    val: Vec<u8>,
     resp: Responder<()>,
   }
 }
@@ -64,8 +64,9 @@ async fn main() {
   let (tx, mut rx) = mpsc::channel(32);
   let tx2 = tx.clone();
 
+  // todo: redis操作管理池， 共用一个client
   let manager = tokio::spawn(async move {
-    let mut client = client::connect("127.0.0.1:6379").await.unwrap();
+    let mut client = client::connect("172.20.72.33:6379").await.unwrap();
 
     while let Some(cmd) = rx.recv().await {
       match cmd {
@@ -82,7 +83,46 @@ async fn main() {
     }
   });
 
+  let t1 = tokio::spawn(async move {
+    let (resp_tx, resp_rx) = oneshot::channel();
+    let cmd = Command::Get {
+      key: "foo".to_string(),
+      resp: resp_tx
+    };
 
+    // send the GET request
+    if tx.send(cmd).await.is_err() {
+      eprintln!("---发送Get命令失败，连接任务关闭---");
+      return;
+    }
+
+    // await the response
+    let res = resp_rx.await;
+    println!("接收到命令 (Get) = {:?}", res);
+  });
+
+  let t2 = tokio::spawn(async move {
+    let (resp_tx, resp_rx) = oneshot::channel();
+    let cmd = Command::Set {
+      key: "foo".to_string(),
+      val: b"bar".to_vec(),
+      resp: resp_tx,
+    };
+
+    // send the SET request
+    if tx2.send(cmd).await.is_err() {
+      eprintln!("---发送Set命令失败，连接任务关闭---");
+      return;
+    }
+
+    // await the response
+    let res = resp_rx.await;
+    println!("接收到命令 (Set) = {:?}", res);
+  });
+
+  t1.await.unwrap();
+  t2.await.unwrap();
+  manager.await.unwrap();
 
   // let listener = TcpListener::bind("127.0.0.1:6379").await.unwrap();
 
@@ -183,6 +223,7 @@ async fn process(socket: TcpStream) {
 
 
 // todo: Tutorial 3, 线程间共享存储
+/*
 async fn process(socket: TcpStream, db: Db) {
   // let mut db = HashMap::new();
   let mut connection = Connection::new(socket);
@@ -208,7 +249,7 @@ async fn process(socket: TcpStream, db: Db) {
 
     connection.write_frame(&response).await.unwrap();
   }
-
 }
+ */
 
 

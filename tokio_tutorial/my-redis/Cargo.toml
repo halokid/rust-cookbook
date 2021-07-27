@@ -19,3 +19,30 @@ path = "example/hello_redis.rs"
 name = "channel_sample"
 path = "example/channel_sample.rs"
 
+[[example]]
+name = "io_sample"
+path = "example/io_sample.rs"
+
+[[example]]
+name = "impl_future"
+path = "example/impl_future.rs"
+
+[[example]]
+name = "async_future"
+path = "example/async_future.rs"
+
+[[example]]
+name = "update_waker"
+path = "example/impl_future_waker.rs"
+
+[[example]]
+name = "select_sample"
+path = "example/select_sample.rs"
+
+[[example]]
+name = "myselect"
+path = "example/myselect.rs"
+
+
+
+
