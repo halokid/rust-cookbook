@@ -6,6 +6,7 @@ mod select_sample;
 mod myselect;
 mod monifiying_branch;
 mod streams;
+mod mytest;
 
 use mini_redis::{client, Result};
 

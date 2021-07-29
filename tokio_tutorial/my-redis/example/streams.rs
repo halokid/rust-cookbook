@@ -26,6 +26,12 @@ async fn subscribe() -> mini_redis::Result<()> {
 }
 
 #[tokio::main]
-async fn main() {
+async fn main() -> mini_redis::Result<()> {
+  tokio::spawn( async {
+    pubilsh().await
+  });
 
+  subscribe().await?;
+
+  Ok(())
 }

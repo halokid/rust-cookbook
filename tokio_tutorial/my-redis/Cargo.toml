@@ -10,6 +10,7 @@ tokio = { version = "1", features = ["full"] }
 mini-redis = "0.4"
 bytes = "1"
 tokio-stream = "0.1"
+futures = "0.3.4"
 
 
 [[example]]
@@ -51,6 +52,10 @@ path = "example/monifiying_branch.rs"
 [[example]]
 name = "streams"
 path = "example/streams.rs"
+
+[[example]]
+name = "mytest"
+path = "example/mytest.rs"
 
 
 
