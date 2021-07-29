@@ -5,6 +5,7 @@ mod impl_future_waker;
 mod select_sample;
 mod myselect;
 mod monifiying_branch;
+mod streams;
 
 use mini_redis::{client, Result};
 
