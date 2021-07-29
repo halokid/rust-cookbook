@@ -43,6 +43,10 @@ path = "example/select_sample.rs"
 name = "myselect"
 path = "example/myselect.rs"
 
+[[example]]
+name = "modify_branch"
+path = "example/monifiying_branch.rs"
+
 
 
 
