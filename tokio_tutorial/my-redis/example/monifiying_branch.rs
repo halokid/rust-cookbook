@@ -6,7 +6,7 @@ async fn action(input: Option<i32>) -> Option<String> {
 }
 
 #[tokio::main]
-fn main() {
+async fn main() {
   let (mut tx, mut rx) = tokio::sync::mpsc::channel(128);
 
   let mut done = false;

@@ -7,6 +7,8 @@ mod myselect;
 mod monifiying_branch;
 mod streams;
 mod mytest;
+mod tokio_no_async;
+mod tokio_async;
 
 use mini_redis::{client, Result};
 

@@ -57,6 +57,10 @@ path = "example/streams.rs"
 name = "mytest"
 path = "example/mytest.rs"
 
+[[example]]
+name = "tokio_no_async"
+path = "example/tokio_no_async.rs"
+
 
 
 

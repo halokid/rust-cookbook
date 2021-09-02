@@ -525,6 +525,7 @@ struct InnerEndpoint<MH, T> {
     stream: Transport<T>,
 }
 
+// todo: 只能 InnerEndpoint impl 了下面的各种trait， 那么就可以用  tokio::spawn( endpoint.map_err(|e| trace!("Client endpoint closed because of an error: {}", e)) ); 这种写法新起一个可以处理异步通信的
 impl<MH: MessageHandler + Unpin, T: AsyncRead + AsyncWrite> Future for InnerEndpoint<MH, T> {
     type Output = io::Result<()>;
 
@@ -582,6 +583,7 @@ struct ServerEndpoint<S, T> {
     inner: InnerEndpoint<Server<S>, T>,
 }
 
+// todo: 并没有impl任何的trait， 只是为了new一个struct实例
 impl<S: Service + Unpin, T: AsyncRead + AsyncWrite> ServerEndpoint<S, T> {
     pub fn new(stream: T, service: S) -> Self {
         let stream = FuturesAsyncWriteCompatExt::compat_write(stream);
@@ -594,6 +596,8 @@ impl<S: Service + Unpin, T: AsyncRead + AsyncWrite> ServerEndpoint<S, T> {
     }
 }
 
+// todo: impl 了 Future， 这样当 tokio::spawn 建立线程的时候，  ServerEndpoint 就可以支持异步通信了
+// todo: 因为 tokio 本身也是利用 Future 的 trait 特性来做异步通信的，只是impl了就可以了
 impl<S: Service + Unpin, T: AsyncRead + AsyncWrite> Future for ServerEndpoint<S, T> {
     type Output = io::Result<()>;
 
