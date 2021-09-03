@@ -58,7 +58,7 @@ name = "mytest"
 path = "example/mytest.rs"
 
 [[example]]
-name = "tokio_no_async"
+name = "tokio_async_sample"
 path = "example/tokio_no_async.rs"
 
 
