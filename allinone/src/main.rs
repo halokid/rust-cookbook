@@ -41,6 +41,7 @@ pub mod primitives;
 pub mod cmdargs;
 pub mod structx;
 pub mod futures_sample;
+pub mod thread;
 
 use log::debug;
 use simplelog::{ConfigBuilder, LevelFilter, SimpleLogger};
@@ -130,7 +131,12 @@ fn main() {
   // primitives::comm();
   // cmdargs::comm();
   // structx::c1::comm();
-  futures_sample::c1::comm();
+  // futures_sample::c1::comm();
+  // thread::c1::comm();
+  // thread::c2::comm();
+  // thread::c3::comm();
+  // thread::thread_comiunica_channel::comm();
+  thread::thread_comiunica_channel2::comm();
   std::process::exit(0);
 
   // json_string::comm();

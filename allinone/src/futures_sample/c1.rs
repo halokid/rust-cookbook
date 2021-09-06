@@ -1,3 +1,4 @@
+/*
 use futures::channel::mpsc;
 use futures::executor;
 use futures::executor::ThreadPool;
@@ -9,3 +10,5 @@ pub fn comm() {
     //创建一个unbounded mpsc channel来进行任务间消息通信
     let (tx, rx) = mpsc::unbounded::<i32>();
 }
+
+ */
