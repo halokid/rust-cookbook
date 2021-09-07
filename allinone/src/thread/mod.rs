@@ -3,3 +3,8 @@ pub mod c2;
 pub mod c3;
 pub mod thread_comiunica_channel;
 pub mod thread_comiunica_channel2;
+pub mod thread_async_channel;
+pub mod thread_sync_channel;
+pub mod thread_share_memory;
+pub mod thread_share_memory_heap;
+pub mod thread_notify;

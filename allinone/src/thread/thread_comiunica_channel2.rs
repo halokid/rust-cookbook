@@ -2,6 +2,7 @@
 /*
 channel 发送消息的类型
  */
+/*
 use std::sync::mpsc;
 use std::thread;
 use std::fmt;
@@ -34,6 +35,8 @@ pub fn comm() {
   // 在主线程接收子线程发送的消息并输出
   println!("receive {}", rx.recv().unwrap());
 }
+
+ */
 
 
 

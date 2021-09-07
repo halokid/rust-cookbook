@@ -136,7 +136,11 @@ fn main() {
   // thread::c2::comm();
   // thread::c3::comm();
   // thread::thread_comiunica_channel::comm();
-  thread::thread_comiunica_channel2::comm();
+  // thread::thread_comiunica_channel2::comm();
+  // thread::thread_async_channel::comm();
+  // thread::thread_sync_channel::comm();
+  // thread::thread_share_memory::comm();
+  thread::thread_notify::comm();
   std::process::exit(0);
 
   // json_string::comm();
