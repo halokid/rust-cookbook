@@ -41,6 +41,7 @@ pub mod async_send;
 pub mod structx;
 pub mod futures_sample;
 pub mod thread;
+pub mod concurrence_parallel_goAndRust;
 
 // ================== 集成测试 ===================
 /*

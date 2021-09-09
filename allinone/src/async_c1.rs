@@ -41,7 +41,7 @@ async fn learn_and_sing_song() {
 async fn async_main() {
   let f1 = learn_and_sing_song();
   let f2 = dance();
-  futures::join!(f1, f2);
+  futures::join!(f1, );
 }
 
 fn main2() {

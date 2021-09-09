@@ -42,6 +42,7 @@ pub mod cmdargs;
 pub mod structx;
 pub mod futures_sample;
 pub mod thread;
+pub mod concurrence_parallel_goAndRust;
 
 use log::debug;
 use simplelog::{ConfigBuilder, LevelFilter, SimpleLogger};
@@ -140,7 +141,9 @@ fn main() {
   // thread::thread_async_channel::comm();
   // thread::thread_sync_channel::comm();
   // thread::thread_share_memory::comm();
-  thread::thread_notify::comm();
+  // thread::thread_notify::comm();
+  // concurrence_parallel_goAndRust::c1::comm();
+  concurrence_parallel_goAndRust::c2::comm();
   std::process::exit(0);
 
   // json_string::comm();
