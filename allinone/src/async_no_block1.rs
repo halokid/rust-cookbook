@@ -11,7 +11,7 @@ async fn learn_song() -> String {
   // todo: 这种延时会阻塞所有的线程
   // thread::sleep(time::Duration::from_secs(5));
 
-  // todo: 这种才是在不同线程里面使用延时的正确姿势
+  // todo: 这种才是在不同线程里面使用延时的正确姿势， 但是只能用在async函数里面， 不能用在 tokio::spawn 里面
   tokio::time::delay_for(tokio::time::Duration::from_secs(5)).await;
 
   // task::sleep(Duration::from_secs(1)).await;
