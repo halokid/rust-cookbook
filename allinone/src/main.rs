@@ -44,6 +44,7 @@ pub mod futures_sample;
 pub mod thread;
 pub mod concurrence_parallel_goAndRust;
 pub mod tokio_my;
+pub mod tokio_myx;
 
 use log::debug;
 use simplelog::{ConfigBuilder, LevelFilter, SimpleLogger};
@@ -56,7 +57,7 @@ use std::pin::Pin;
 use std::error::Error;
 use std::convert::Infallible;
 use std::time::Duration;
-use tokio::time::delay_for;
+// use tokio::time::delay_for;
 
 // todo: Box的返回是表示该函数返回的数据 夺取了控制权
 // todo: dyn 是表示 trait 的多态
@@ -76,10 +77,10 @@ fn return_future_result() -> impl Future<Output = Result<i32, impl Error>> {
 }
 
 // todo: 线程延时
-fn returns_delayed_future() -> impl Future<Output = i32> {
-  delay_for(Duration::from_secs(3))
-    .then(|_| futures::future::ready(42))
-}
+// fn returns_delayed_future() -> impl Future<Output = i32> {
+  // delay_for(Duration::from_secs(3))
+  //   .then(|_| futures::future::ready(42))
+// }
 
 pub trait SerialNumber: Sized + Copy + Eq {
   fn sn_add(self, n: Self) -> Option<Self>;
@@ -148,6 +149,14 @@ fn main() {
   // tokio_my::c1::comm();
   tokio_my::c2::comm();
   std::process::exit(0);
+  // tokio_myx::c1::comm();
+  // tokio_myx::c2::comm();
+  // tokio_myx::c3::comm();
+  // tokio_myx::c4::comm();
+  // tokio_myx::c5::comm();
+  // tokio_myx::c6::comm();
+  tokio_myx::c7::comm();
+  // std::process::exit(0);
 
   // json_string::comm();
   // async_block::comm();
@@ -162,6 +171,7 @@ fn main() {
   // closure_futures_async_await::p5::comm1();
   // futures::future::ready(42);     // todo: 这样是不会执行的, 加上.await也不行
 
+  /*
   let mut rt = tokio::runtime::Runtime::new().unwrap();
   {
     let result = rt.block_on(futures::future::ready("x rt.block_on()"));
@@ -169,6 +179,7 @@ fn main() {
   }
 
   rt.block_on(returns_dyn_future_i32());
+   */
 
   /*
   std::process::exit(0);

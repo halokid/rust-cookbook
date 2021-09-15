@@ -1,3 +1,5 @@
+
+/*
 use log::debug;
 
 pub fn comm1() {
@@ -33,6 +35,8 @@ pub fn comm1() {
   rt.spawn(futures::future::lazy(|_| println!("in rt.spawn()")));
 
 }
+
+ */
 
 
 

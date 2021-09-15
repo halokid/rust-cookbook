@@ -43,6 +43,7 @@ pub mod futures_sample;
 pub mod thread;
 pub mod concurrence_parallel_goAndRust;
 pub mod tokio_my;
+pub mod tokio_myx;
 
 // ================== 集成测试 ===================
 /*
