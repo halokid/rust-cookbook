@@ -3,12 +3,15 @@
 use std::thread::sleep;
 use tokio::time::Duration;
 use std::time;
+use std::thread;
 
 #[tokio::main]
 pub async fn comm() {
+  println!("主线程 id {:?}", thread::current().id());
   let start = time::Instant::now();
 
   tokio::task::spawn_blocking(|| {
+    println!("线程A id {:?}", thread::current().id());
     // todo: 运行在一个阻塞的线程，可以看作是一个比较耗时的操作
     sleep(Duration::from_secs(6));
     println!("hi");
