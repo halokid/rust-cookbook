@@ -29,8 +29,8 @@ pub fn comm() {
   //构造单线程tokio运行环境
   // todo: 简历 tokio runtime 的时候， 不用async函数本身
   let runtime = Builder::new_multi_thread().
-    max_threads(0).
-    // max_threads(3).   // todo: 大于 0 就可以并发
+    max_threads(1).
+    // max_threads(3).   // todo: 大于 1 就可以并发
     enable_all().
     build().
     expect("create tokio runtime failed");
