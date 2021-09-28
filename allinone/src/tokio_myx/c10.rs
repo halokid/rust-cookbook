@@ -5,8 +5,9 @@ use tokio::time::Duration;
 use std::time;
 use tokio::sync::mpsc;
 use std::option::Option::Some;
-use std::sync::atomic::{AtomicUsize, Ordering};
+use std::sync::atomic::{AtomicUsize, Ordering, AtomicU8};
 use std::sync::Arc;
+use futures::TryFutureExt;
 
 // todo: 参考 https://users.rust-lang.org/t/how-to-mutate-a-global-variable-using-tokio-and-futures/50276/4
 
@@ -35,11 +36,17 @@ pub async fn comm() {
   tokio::task::spawn(async move {
     let say_hello = get_ret(namex);
     tx.send(say_hello).await.unwrap();
+    // tx.send(say_hello).await;
   });
 
   while let Some(message) = rx.recv().await {
-    println!("say_hello通过mpsc传回主线程: {:?}", message);
+    println!("await方式在主线程获取跨线程 say_hello通过mpsc传回主线程: {:?}", message);
   }
+
+  // todo: 这样是不行的， 必须在其他线程 recv, 不能在主线程
+  // while let Some(msg) = rx.blocking_recv() {
+  //   println!("block方式在主线程获取跨线程 say_hello通过mpsc传回主线程: {:?}", msg);
+  // }
 
 
   // todo: +++++++ 通过共享内存的方式 +++++++++++++++++++++++++++++++++++++++++++++++++
@@ -53,6 +60,15 @@ pub async fn comm() {
       println!("在spawn async中的Arc标识的共享内存: {:?}", v);
     });
   }
+
+
+  // todo: +++++++ 通过共享内存的方式返回字符串, 不成功 +++++++++++++++++++++++++++++++++++++++++++++++++
+  // let mut valx = Arc::new("hello");
+  // let valy = Arc::clone(&valx);
+  // tokio::task::spawn(async move {
+  //   valx = Arc::from("xxx");
+  // });
+  // println!("valx ------------- {}", valx);
 }
 
 fn get_ret(name: String) -> String {
