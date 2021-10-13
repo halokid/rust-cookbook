@@ -9,6 +9,8 @@ mod streams;
 mod mytest;
 mod tokio_no_async;
 mod tokio_async;
+mod echo_client;
+mod echo_server;
 
 use mini_redis::{client, Result};
 
