@@ -11,6 +11,9 @@ mod tokio_no_async;
 mod tokio_async;
 mod echo_client;
 mod echo_server;
+mod echo_client_stream;
+mod pure_server;
+mod pure_client;
 
 use mini_redis::{client, Result};
 
