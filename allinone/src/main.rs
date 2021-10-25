@@ -41,7 +41,6 @@ pub mod primitives;
 pub mod cmdargs;
 pub mod structx;
 pub mod futures_sample;
-pub mod thread;
 pub mod concurrence_parallel_goAndRust;
 pub mod tokio_my;
 pub mod tokio_myx;
@@ -161,11 +160,15 @@ fn main() {
   // tokio_myx::c10::comm();
   // tokio_myx::c11::comm();
   // tokio_myx::c12::comm();
-  // tokio_myx::c13::comm();
+  tokio_myx::c13::comm();
   // tokio_myx::c14::comm();
   // tokio_myx::c15::comm();
   // tokio_myx::c16::comm();
-  tokio_myx::c18::comm();
+  // tokio_myx::c18::comm();
+  tokio_myx::c19::comm();
+  // let s = tokio_myx::c19::comm2().await;
+  // println!("s ---- {}", s);
+  // std::thread::sleep(Duration::from_secs(10));
   // std::process::exit(0);
 
   // json_string::comm();
