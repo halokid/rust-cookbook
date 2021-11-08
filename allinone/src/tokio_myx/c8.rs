@@ -16,7 +16,7 @@ pub fn comm() {
   // todo: 建立 tokio runtime 的时候， 不用async函数本身
   // todo: 构建一个用户态运行时（也就是用户态线程，类似于协程）, 协程的最大并行数也是不超过CPU最大核数的，因为要超过根本就不是并行了， 而是并发了。。
   let runtime = Builder::new_multi_thread().
-    max_threads(9).   // todo: 最多只能生成CPU核数那么多的线程数, 最多同时只能有CPU核数一样的线程并发（也就是并行）
+    max_threads(12).   // todo: 最多只能生成CPU核数那么多的线程数, 最多同时只能有CPU核数一样的线程并发（也就是并行）
     // max_threads(3).   // todo: 大于 0 就可以并发
     enable_all().
     build().
