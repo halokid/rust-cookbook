@@ -62,6 +62,18 @@ name = "tokio_async_sample"
 path = "example/tokio_no_async.rs"
 
 
+[[example]]
+name = "echo_client_stream"
+path = "example/echo_client_stream.rs"
+
+[[example]]
+name = "echo_client"
+path = "example/echo_client.rs"
+
+[[example]]
+name = "echo_server"
+path = "example/echo_server.rs"
+
 
 
 
