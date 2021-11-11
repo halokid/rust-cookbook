@@ -1,4 +1,6 @@
 
+// todo: case for use std::sync::channel;
+
 use std::sync::mpsc;
 use std::thread;
 

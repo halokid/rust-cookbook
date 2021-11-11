@@ -167,7 +167,8 @@ fn main() {
   // tokio_myx::c16::comm();
   // tokio_myx::c18::comm();
   // tokio_myx::c19::comm();
-  channel_compare_tokio_std::std_channel1::comm();
+  // channel_compare_tokio_std::std_channel1::comm();
+  channel_compare_tokio_std::tokio_channel1::comm();
   // let s = tokio_myx::c19::comm2().await;
   // println!("s ---- {}", s);
   // std::thread::sleep(Duration::from_secs(10));
