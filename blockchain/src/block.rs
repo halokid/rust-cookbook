@@ -6,10 +6,11 @@ use bincode::serialize;
 use super::*;
 use easy_hasher::easy_hasher::sha256;
 // use crypto::sha2::Sha256;
+use serde::{Deserialize, Serialize};
 
 const TARGET_HEXS: usize = 4;
 
-#[derive(Debug)]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct Block {
   timestamp:  u128,
   data:   String,
@@ -56,6 +57,10 @@ impl Block {
 
   pub fn get_hash(&self) -> String {
     self.hash.clone()
+  }
+
+  pub fn get_prev_hash(&self) -> String {
+    self.prev_block_hash.clone()
   }
 
   /*

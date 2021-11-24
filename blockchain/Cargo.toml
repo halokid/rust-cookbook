@@ -15,3 +15,7 @@ failure = "0.1.8"
 #digest = "0.9"
 #sha2-asm = { version = "0.6.1", optional = true }
 easy-hasher = "2.2.1"
+sled = "0.34"
+serde = {version ="1.0", features =["derive"]}
+
+
