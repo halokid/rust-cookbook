@@ -1,11 +1,12 @@
-/*
+// /*
 use std::time::SystemTime;
-use crate::CustomResult;
 use bincode::serialize;
 // use crypto::digest::Digest;
 // use crypto::sha2::Sha256;
 use super::*;
+use easy_hasher::easy_hasher::sha256;
 
+#[derive(Debug)]
 pub struct Block {
   timestamp:  u128,
   data:   String,
@@ -14,15 +15,16 @@ pub struct Block {
 }
 
 impl Block {
-  pub fn set_hash(&mut self) -> CustomResult<()> {
+  pub fn set_hash(&mut self) -> Result<()> {
     self.timestamp = SystemTime::now()
       .duration_since(SystemTime::UNIX_EPOCH)?
       .as_millis();
-    let content = (self.data.clone(), self.timestamp);
-    let bytes = serialize((&content))?;
-    let mut hasher = Sha256::new();
-    hasher.input(&bytes[..]);
-    self.hash = hasher.result_str();
+    let data = self.data.clone();
+    let timestamp = self.timestamp.to_string();
+    let content = format!("{}{}", data, timestamp);
+    let hash = sha256(&content);
+    let s_hash = hash.to_hex_string();
+    self.hash = s_hash;
 
     Ok(())
   }
@@ -47,4 +49,18 @@ impl Block {
   }
 }
 
- */
+ // */
+
+#[test]
+fn set_hash_test() {
+  let mut bl = Block{
+    timestamp: 0,
+    data: "hello".to_string(),
+    prev_block_hash: "123456789".to_string(),
+    hash: "".to_string()
+  };
+  bl.set_hash();
+  println!("bl -- {:?}", bl);
+}
+
+

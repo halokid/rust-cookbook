@@ -2,7 +2,7 @@
 mod block;
 mod blockchain;
 
-/*
+// /*
 use std::thread::sleep;
 use std::time::Duration;
 use crate::blockchain::Blockchain;
@@ -22,7 +22,9 @@ fn main() -> Result<()> {
   Ok(())
 }
 
- */
+ // */
 
 
-fn main() {}
+// fn main() {}
+
+
