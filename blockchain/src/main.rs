@@ -1,24 +1,24 @@
 
 mod block;
 mod blockchain;
+mod cli;
+
+#[macro_use]
+extern crate log;
+
+use crate::cli::{CLi};
+use env_logger::Env;
 
 // /*
-use std::thread::sleep;
-use std::time::Duration;
-use crate::blockchain::Blockchain;
-
-
 pub type Result<T> = std::result::Result<T, failure::Error>;
 
 fn main() -> Result<()> {
-  let mut bc = Blockchain::new();
-  sleep(Duration::from_millis(10));
-  bc.add_block(String::from("Send 1 BTC to Halokid"))?;
+  env_logger::Builder::from_env(Env::default().default_filter_or("info"))
+    .init();
 
-  sleep(Duration::from_millis(30));
-  bc.add_block(String::from("Send 2 more BTC to Halokid"))?;
+  let mut cli = CLi::new()?;
+  cli.run();
 
-  println!("Blockchain: {:#?}", bc);
   Ok(())
 }
 

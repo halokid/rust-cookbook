@@ -89,7 +89,7 @@ impl Block {
     let data = self.prepare_hash_data()?;
     let val = data.as_str();
     let data_sp = &val[0..TARGET_HEXS as usize];
-    println!("data_sp --- {}", data_sp);
+    info!("正在挖矿, 匹配特征码为 --- {}", data_sp);
     let check = "0000";
     if data_sp == check {
       return Ok(true);
@@ -98,10 +98,11 @@ impl Block {
   }
 
   fn run_proof_work(&mut self) -> Result<()> {
-    println!("Mining the block containing \"{}\"\n", self.data);
+    info!("开始挖矿 \"{}\"\n", self.data);
     while !self.validate()? {
       self.nonce += 1;
     }
+    info!("=== 挖到矿啦 ===");
     let hash_data = self.prepare_hash_data()?;
     self.hash = hash_data;
     Ok(())
