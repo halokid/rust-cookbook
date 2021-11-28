@@ -1,4 +1,4 @@
-
+#![allow(non_snake_case)]
 mod block;
 mod blockchain;
 mod cli;
@@ -7,25 +7,20 @@ mod transaction;
 #[macro_use]
 extern crate log;
 
-use crate::cli::{CLi};
-use env_logger::Env;
-
-// /*
 pub type Result<T> = std::result::Result<T, failure::Error>;
 
+use crate::cli::Cli;
+use env_logger::Env;
+
 fn main() -> Result<()> {
-  env_logger::Builder::from_env(Env::default().default_filter_or("info"))
-    .init();
+    env_logger::from_env(Env::default().default_filter_or("warning")).init();
 
-  let mut cli = CLi::new()?;
-  cli.run();
+    let mut cli = Cli::new()?;
+    cli.run()?;
 
-  Ok(())
+    Ok(())
 }
 
- // */
 
-
-// fn main() {}
 
 
