@@ -34,7 +34,7 @@ impl Transaction {
   pub fn new_UTXO(from: &str, to: &str, amout: i32, bc: &Blockchain) -> Result<Transaction> {
     let mut vin = Vec::new();
     let acc_v = bc.find_spendable_outputs(
-      from.to_string(),amout);
+      from,amout);
 
     for tx in acc_v.1 {
       for out in tx.1 {
@@ -108,14 +108,14 @@ impl Transaction {
 
 impl TXInput {
   /// CanUnlockOutputWith checks whether the address initiated the transaction
-  pub fn can_unlock_output_with(&self, unlocking_data: String) -> bool {
+  pub fn can_unlock_output_with(&self, unlocking_data: &str) -> bool {
     self.script_sig == unlocking_data
   }
 }
 
 impl TXOutput {
   /// CanBeUnlockedWith checks if the output can be unlocked with the provided data
-  pub fn can_be_unlock_with(&self, unlocking_data: String) -> bool {
+  pub fn can_be_unlock_with(&self, unlocking_data: &str) -> bool {
     self.script_pub_key == unlocking_data
   }
 }

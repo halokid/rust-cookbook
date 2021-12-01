@@ -12,6 +12,7 @@ impl Cli {
     }
 
     pub fn run(&mut self) -> Result<()> {
+        env_logger::Builder::from_env(Env::default().default_filter_or("info")).init();
         info!("run app");
         let matches = App::new("blockchain-demo")
             .version("0.1")
@@ -39,9 +40,9 @@ impl Cli {
 
         if let Some(ref matches) = matches.subcommand_matches("getbalance") {
             if let Some(address) = matches.value_of("address") {
-                let address = String::from(address);
+                // let address = String::from(address);
                 let bc = Blockchain::new()?;
-                let utxos = bc.find_UTXO(address.clone());
+                let utxos = bc.find_UTXO(address);
 
                 let mut balance = 0;
                 for out in utxos {

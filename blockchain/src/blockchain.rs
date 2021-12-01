@@ -23,7 +23,7 @@ pub struct BlockchainIterator<'a> {
 impl Blockchain {
   /// NewBlockchain creates a new Blockchain db
   pub fn new() -> Result<Blockchain> {
-    info!("=== 建立blockchain实例 ===");
+    info!("=== 打开blockchain ===");
 
     let db = sled::open("data/blocks")?;
     let hash = db.get("LAST")?
@@ -82,14 +82,14 @@ impl Blockchain {
   }
 
   /// 返回所有没有完成的交易总共有多少输出
-  pub fn find_UTXO(&self, address: String) -> Vec<TXOutput> {
+  pub fn find_UTXO(&self, address: &str) -> Vec<TXOutput> {
     let mut utxos = Vec::<TXOutput>::new();
-    let addressx = address.clone();
+    // let addressx = address.clone();
     let unspend_TXs = self.find_unspent_transactions(address);
 
     for tx in unspend_TXs {
       for out in tx.vout {
-        if out.can_be_unlock_with(addressx.clone()) {
+        if out.can_be_unlock_with(address) {
           utxos.push(out)
         }
       }
@@ -100,16 +100,16 @@ impl Blockchain {
   // 返回所有有效的交易包含多少可花费的输出
   // @param: amount, 要交易的金额
   pub fn find_spendable_outputs(
-    &self, address: String, amount: i32,
+    &self, address: &str, amount: i32,
   ) -> (i32, HashMap<String, Vec<i32>>) {
     let mut unspent_outputs: HashMap<String, Vec<i32>> = HashMap::new();
     let mut accumulated = 0;
-    let addressx = address.clone();
+    // let addressx = address.clone();
     let unspend_TXs = self.find_unspent_transactions(address);
 
     for tx in unspend_TXs {
       for index in 0..tx.vout.len() {
-        if tx.vout[index].can_be_unlock_with(addressx.clone())
+        if tx.vout[index].can_be_unlock_with(address)
           && accumulated < amount {
           match unspent_outputs.get(&tx.id) {
             None => {
@@ -132,7 +132,7 @@ impl Blockchain {
   }
 
   // 返回还有多少未完成的交易
-  pub fn find_unspent_transactions(&self, address: String) -> Vec<Transaction> {
+  pub fn find_unspent_transactions(&self, address: &str) -> Vec<Transaction> {
     let mut spent_TXOs: HashMap<String, Vec<i32>> = HashMap::new();
     let mut unspent_TXs: Vec<Transaction> = Vec::new();
 
@@ -145,7 +145,7 @@ impl Blockchain {
             }
           }
 
-          if tx.vout[index].can_be_unlock_with(address.clone()) {
+          if tx.vout[index].can_be_unlock_with(address) {
             unspent_TXs.push(tx.to_owned());
           }
         }
