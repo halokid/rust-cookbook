@@ -1,24 +1,25 @@
 use super::*;
 use crate::blockchain::*;
 use crate::transaction::*;
+use crate::wallets::*;
 use clap::{App, Arg};
 use std::process::exit;
 
 pub struct Cli {}
 
 impl Cli {
-    pub fn new() -> Result<Cli> {
-        Ok(Cli {})
+    pub fn new() -> Cli {
+        Cli {}
     }
 
     pub fn run(&mut self) -> Result<()> {
-        env_logger::Builder::from_env(Env::default().default_filter_or("info")).init();
         info!("run app");
         let matches = App::new("blockchain-demo")
             .version("0.1")
             .author("yunwei37. 1067852565@qq.com")
             .about("reimplement blockchain_go in rust: a simple blockchain for learning")
             .subcommand(App::new("printchain").about("print all the chain blocks"))
+            .subcommand(App::new("createwallet").about("create a wallet"))
             .subcommand(
                 App::new("getbalance")
                     .about("get balance in the blockchain")
@@ -40,7 +41,7 @@ impl Cli {
 
         if let Some(ref matches) = matches.subcommand_matches("getbalance") {
             if let Some(address) = matches.value_of("address") {
-                // let address = String::from(address);
+                let address = address.as_bytes();
                 let bc = Blockchain::new()?;
                 let utxos = bc.find_UTXO(address);
 
@@ -48,8 +49,15 @@ impl Cli {
                 for out in utxos {
                     balance += out.value;
                 }
-                println!("Balance of '{}': {}\n", address, balance);
+                println!("Balance: {}\n", balance);
             }
+        }
+
+        if let Some(_) = matches.subcommand_matches("createwallet") {
+            let mut ws = Wallets::new()?;
+            let address = ws.create_wallet();
+            ws.save_all()?;
+            println!("success: address {}", address);
         }
 
         if let Some(_) = matches.subcommand_matches("printchain") {
@@ -95,6 +103,3 @@ impl Cli {
         Ok(())
     }
 }
-
-
-

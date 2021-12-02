@@ -1,200 +1,184 @@
-use std::collections::HashMap;
-use bincode::{deserialize, serialize};
-// /*
 use super::*;
 use crate::block::*;
+use crate::transaction::*;
+use bincode::{deserialize, serialize};
 use sled;
-use crate::transaction::{Transaction, TXOutput};
+use std::collections::HashMap;
 
-const GENESIS_COINBASE_DATA: &str = "=== blockchain发行了部分数字资产 ===";
+const GENESIS_COINBASE_DATA: &str =
+    "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks";
 
+/// Blockchain implements interactions with a DB
 #[derive(Debug)]
 pub struct Blockchain {
-  // blocks:   Vec<Block>,
-  tip: String,
-  db: sled::Db,
+    tip: String,
+    db: sled::Db,
 }
 
+/// BlockchainIterator is used to iterate over blockchain blocks
 pub struct BlockchainIterator<'a> {
-  current_hash: String,
-  bc: &'a Blockchain,
+    current_hash: String,
+    bc: &'a Blockchain,
 }
 
 impl Blockchain {
-  /// NewBlockchain creates a new Blockchain db
-  pub fn new() -> Result<Blockchain> {
-    info!("=== 打开blockchain ===");
+    /// NewBlockchain creates a new Blockchain db
+    pub fn new() -> Result<Blockchain> {
+        info!("open blockchain");
 
-    let db = sled::open("data/blocks")?;
-    let hash = db.get("LAST")?
-      .expect("=== 必须首先创建一个区块数据 ===");
-    info!("=== 找到区块数据 ===");
-    let lasthash = String::from_utf8(hash.to_vec())?;
-    Ok(Blockchain {
-      tip: lasthash.clone(),
-      db,
-    })
-  }
-
-  /// CreateBlockchain creates a new blockchain DB
-  pub fn create_blockchain(address: String) -> Result<Blockchain> {
-    info!("=== 创建新的区块链blockchain ===");
-
-    let db = sled::open("data/blocks")?;
-    info!("=== 在创建新区块数据 ===");
-    let cbtx = Transaction::new_coinbase(address,
-       String::from(GENESIS_COINBASE_DATA))?;
-    let genesis: Block = Block::new_genesis_block(cbtx);
-
-    db.insert(genesis.get_hash(), serialize(&genesis)?)?;
-    db.insert("LAST", genesis.get_hash().as_bytes())?;
-    let bc = Blockchain {
-      tip: genesis.get_hash(),
-      db,
-    };
-    bc.db.flush()?;
-    Ok(bc)
-  }
-
-  /// MineBlock mines a new block with the provided transactions
-  pub fn mine_block(&mut self, transactions: Vec<Transaction>) -> Result<()> {
-    info!("=== 添加新区块到区块链 ===");
-    let lasthash = self.db.get("LAST")?.unwrap();
-
-    let newblock = Block::new_block(transactions,
-                                    String::from_utf8(lasthash.to_vec())?)?;
-
-    self.db.insert(newblock.get_hash(), serialize(&newblock)?)?;
-    self.db.insert("LAST", newblock.get_hash().as_bytes())?;
-    self.db.flush()?;
-
-    self.tip = newblock.get_hash();
-
-    Ok(())
-  }
-
-  // 返回一个 BlockchainIterator
-  pub fn iter(&self) -> BlockchainIterator {
-    BlockchainIterator {
-      current_hash: self.tip.clone(),
-      bc: &self,
-    }
-  }
-
-  /// 返回所有没有完成的交易总共有多少输出
-  pub fn find_UTXO(&self, address: &str) -> Vec<TXOutput> {
-    let mut utxos = Vec::<TXOutput>::new();
-    // let addressx = address.clone();
-    let unspend_TXs = self.find_unspent_transactions(address);
-
-    for tx in unspend_TXs {
-      for out in tx.vout {
-        if out.can_be_unlock_with(address) {
-          utxos.push(out)
-        }
-      }
-    }
-    utxos
-  }
-
-  // 返回所有有效的交易包含多少可花费的输出
-  // @param: amount, 要交易的金额
-  pub fn find_spendable_outputs(
-    &self, address: &str, amount: i32,
-  ) -> (i32, HashMap<String, Vec<i32>>) {
-    let mut unspent_outputs: HashMap<String, Vec<i32>> = HashMap::new();
-    let mut accumulated = 0;
-    // let addressx = address.clone();
-    let unspend_TXs = self.find_unspent_transactions(address);
-
-    for tx in unspend_TXs {
-      for index in 0..tx.vout.len() {
-        if tx.vout[index].can_be_unlock_with(address)
-          && accumulated < amount {
-          match unspent_outputs.get(&tx.id) {
-            None => {
-              unspent_outputs.insert(tx.clone().id, vec![index as i32]);
-            }
-
-            // Some(mut v) => { v.push(index as i32) }
-            _ => {}
-          }
-          accumulated += tx.vout[index].value;
-
-          if accumulated >= amount {
-            return (accumulated, unspent_outputs);
-          }
-        }
-      }
+        let db = sled::open("data/blocks")?;
+        let hash = db
+            .get("LAST")?
+            .expect("Must create a new block database first");
+        info!("Found block database");
+        let lasthash = String::from_utf8(hash.to_vec())?;
+        Ok(Blockchain {
+            tip: lasthash.clone(),
+            db,
+        })
     }
 
-    (accumulated, unspent_outputs)
-  }
+    /// CreateBlockchain creates a new blockchain DB
+    pub fn create_blockchain(address: String) -> Result<Blockchain> {
+        info!("Creating new blockchain");
 
-  // 返回还有多少未完成的交易
-  pub fn find_unspent_transactions(&self, address: &str) -> Vec<Transaction> {
-    let mut spent_TXOs: HashMap<String, Vec<i32>> = HashMap::new();
-    let mut unspent_TXs: Vec<Transaction> = Vec::new();
+        let db = sled::open("data/blocks")?;
+        debug!("Creating new block database");
+        let cbtx = Transaction::new_coinbase(address, String::from(GENESIS_COINBASE_DATA))?;
+        let genesis: Block = Block::new_genesis_block(cbtx);
+        db.insert(genesis.get_hash(), serialize(&genesis)?)?;
+        db.insert("LAST", genesis.get_hash().as_bytes())?;
+        let bc = Blockchain {
+            tip: genesis.get_hash(),
+            db,
+        };
+        bc.db.flush()?;
+        Ok(bc)
+    }
 
-    for block in self.iter() {
-      for tx in block.get_transaction() {
-        for index in 0..tx.vout.len() {
-          if let Some(ids) = spent_TXOs.get(&tx.id) {
-            if ids.contains(&(index as i32)) {
-              continue;
-            }
-          }
+    /// MineBlock mines a new block with the provided transactions
+    pub fn mine_block(&mut self, transactions: Vec<Transaction>) -> Result<()> {
+        info!("mine a new block");
+        let lasthash = self.db.get("LAST")?.unwrap();
 
-          if tx.vout[index].can_be_unlock_with(address) {
-            unspent_TXs.push(tx.to_owned());
-          }
+        let newblock = Block::new_block(transactions, String::from_utf8(lasthash.to_vec())?)?;
+        self.db.insert(newblock.get_hash(), serialize(&newblock)?)?;
+        self.db.insert("LAST", newblock.get_hash().as_bytes())?;
+        self.db.flush()?;
+
+        self.tip = newblock.get_hash();
+        Ok(())
+    }
+
+    /// Iterator returns a BlockchainIterat
+    pub fn iter(&self) -> BlockchainIterator {
+        BlockchainIterator {
+            current_hash: self.tip.clone(),
+            bc: &self,
         }
+    }
 
-        if !tx.is_coinbase() {
-          for i in &tx.vin {
-            if i.can_unlock_output_with(address.clone()) {
-              match spent_TXOs.get(&i.txid) {
-                None => {
-                  spent_TXOs.insert(i.txid.clone(), vec![i.vout]);
+    /// FindUTXO finds and returns all unspent transaction outputs
+    pub fn find_UTXO(&self, pub_key_hash: &[u8]) -> Vec<TXOutput> {
+        let mut utxos = Vec::<TXOutput>::new();
+        let unspend_TXs = self.find_unspent_transactions(pub_key_hash);
+        for tx in unspend_TXs {
+            for out in &tx.vout {
+                if out.is_locked_with_key(pub_key_hash) {
+                    utxos.push(out.clone());
                 }
-                // Some(mut v) => {
-                //   v.push(i.vout)
-                // }
-                _ => {}
-              }
             }
-          }
         }
-      }
+        utxos
     }
 
-    unspent_TXs
-  }
+    /// FindUnspentTransactions returns a list of transactions containing unspent outputs
+    pub fn find_spendable_outputs(
+        &self,
+        pub_key_hash: &[u8],
+        amount: i32,
+    ) -> (i32, HashMap<String, Vec<i32>>) {
+        let mut unspent_outputs: HashMap<String, Vec<i32>> = HashMap::new();
+        let mut accumulated = 0;
+        let unspend_TXs = self.find_unspent_transactions(pub_key_hash);
+
+        for tx in unspend_TXs {
+            for index in 0..tx.vout.len() {
+                if tx.vout[index].is_locked_with_key(pub_key_hash) && accumulated < amount {
+                    match unspent_outputs.get_mut(&tx.id) {
+                        Some(v) => v.push(index as i32),
+                        None => {
+                            unspent_outputs.insert(tx.id.clone(), vec![index as i32]);
+                        }
+                    }
+                    accumulated += tx.vout[index].value;
+
+                    if accumulated >= amount {
+                        return (accumulated, unspent_outputs);
+                    }
+                }
+            }
+        }
+        (accumulated, unspent_outputs)
+    }
+
+    /// FindUnspentTransactions returns a list of transactions containing unspent outputs
+    fn find_unspent_transactions(&self, pub_key_hash: &[u8]) -> Vec<Transaction> {
+        let mut spent_TXOs: HashMap<String, Vec<i32>> = HashMap::new();
+        let mut unspend_TXs: Vec<Transaction> = Vec::new();
+
+        for block in self.iter() {
+            for tx in block.get_transaction() {
+                for index in 0..tx.vout.len() {
+                    if let Some(ids) = spent_TXOs.get(&tx.id) {
+                        if ids.contains(&(index as i32)) {
+                            continue;
+                        }
+                    }
+
+                    if tx.vout[index].is_locked_with_key(pub_key_hash) {
+                        unspend_TXs.push(tx.to_owned())
+                    }
+                }
+
+                if !tx.is_coinbase() {
+                    for i in &tx.vin {
+                        if i.uses_key(pub_key_hash) {
+                            match spent_TXOs.get_mut(&i.txid) {
+                                Some(v) => {
+                                    v.push(i.vout);
+                                }
+                                None => {
+                                    spent_TXOs.insert(i.txid.clone(), vec![i.vout]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        unspend_TXs
+    }
 }
 
 impl<'a> Iterator for BlockchainIterator<'a> {
-  type Item = Block;
+    type Item = Block;
 
-  fn next(&mut self) -> Option<Self::Item> {
-    if let Ok(encoded_block) = self.bc.db.get(&self.current_hash) {
-      return match encoded_block {
-        Some(b) => {
-          if let Ok(block) = deserialize::<Block>(&b) {
-            self.current_hash = block.get_prev_hash();
-            Some(block)
-          } else {
-            None
-          }
+    fn next(&mut self) -> Option<Self::Item> {
+        if let Ok(encoded_block) = self.bc.db.get(&self.current_hash) {
+            return match encoded_block {
+                Some(b) => {
+                    if let Ok(block) = deserialize::<Block>(&b) {
+                        self.current_hash = block.get_prev_hash();
+                        Some(block)
+                    } else {
+                        None
+                    }
+                }
+                None => None,
+            };
         }
-        None => None,
-      };
+        None
     }
-    None
-  }
 }
-
-// */
-
-
-
-

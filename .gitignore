@@ -41,3 +41,5 @@
 /tokio_tutorial/.idea
 /blockchain/.idea
 /blockchain/target
+/blockchain/data/blocks
+/blockchain/data/wallets
