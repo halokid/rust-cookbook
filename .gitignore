@@ -43,3 +43,4 @@
 /blockchain/target
 /blockchain/data/blocks
 /blockchain/data/wallets
+/blockchain/data/utxos
