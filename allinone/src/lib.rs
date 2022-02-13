@@ -45,6 +45,7 @@ pub mod concurrence_parallel_goAndRust;
 pub mod tokio_my;
 pub mod tokio_myx;
 pub mod channel_compare_tokio_std;
+pub mod oop;
 
 // ================== 集成测试 ===================
 /*
