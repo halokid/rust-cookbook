@@ -46,6 +46,7 @@ pub mod tokio_my;
 pub mod tokio_myx;
 pub mod channel_compare_tokio_std;
 pub mod rust_design_patterns;
+pub mod oop;
 
 use log::debug;
 use simplelog::{ConfigBuilder, LevelFilter, SimpleLogger};
@@ -172,6 +173,8 @@ fn main() {
   // channel_compare_tokio_std::tokio_channel1::comm();
   // rust_design_patterns::idioms::use_borrowed_type_for_fn::comm();
   rust_design_patterns::idioms::default_trait::comm();
+  // oop::single_struct_circle::comm();
+  // oop::c1::comm1();
   // let s = tokio_myx::c19::comm2().await;
   // println!("s ---- {}", s);
   // std::thread::sleep(Duration::from_secs(10));
