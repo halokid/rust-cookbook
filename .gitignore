@@ -44,3 +44,6 @@
 /blockchain/data/blocks
 /blockchain/data/wallets
 /blockchain/data/utxos
+/porust/examples/goclient/*.exe
+/learn_by_sample/*.exe
+/learn_by_sample/trait/*.exe

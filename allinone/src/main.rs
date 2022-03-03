@@ -45,6 +45,7 @@ pub mod concurrence_parallel_goAndRust;
 pub mod tokio_my;
 pub mod tokio_myx;
 pub mod channel_compare_tokio_std;
+pub mod rust_design_patterns;
 
 use log::debug;
 use simplelog::{ConfigBuilder, LevelFilter, SimpleLogger};
@@ -168,7 +169,9 @@ fn main() {
   // tokio_myx::c18::comm();
   // tokio_myx::c19::comm();
   // channel_compare_tokio_std::std_channel1::comm();
-  channel_compare_tokio_std::tokio_channel1::comm();
+  // channel_compare_tokio_std::tokio_channel1::comm();
+  // rust_design_patterns::idioms::use_borrowed_type_for_fn::comm();
+  rust_design_patterns::idioms::default_trait::comm();
   // let s = tokio_myx::c19::comm2().await;
   // println!("s ---- {}", s);
   // std::thread::sleep(Duration::from_secs(10));
