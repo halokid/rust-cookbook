@@ -1,4 +1,4 @@
-
+/*
 // flat enums
 enum DatabaseError {
   IsReadOnly = 1,
@@ -101,6 +101,7 @@ impl From<ParseError> for parse_error {
     parse_error { expected: 0, line, ch }
   }
 }
+ */
 
 
 

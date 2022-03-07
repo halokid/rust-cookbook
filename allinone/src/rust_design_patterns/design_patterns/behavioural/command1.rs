@@ -42,7 +42,7 @@ struct Schema {
 
 impl Schema {
   fn new() -> Self {
-    commands:  vec![]
+    Self { commands: vec![] }
   }
 
   fn add_migration(&mut self, cmd: Box<dyn Migration>) {
@@ -54,14 +54,27 @@ impl Schema {
       cmd.execute()
     ).collect()
   }
+
+  fn rollback(&self) -> Vec<&str> {
+    self.commands
+      .iter()
+      .map( |cmd| cmd.rollback() )
+      .collect()
+  }
 }
 
+pub fn comm() {
+  let mut schema = Schema::new();
 
+  let cmd = Box::new(CreateTable);
+  schema.add_migration(cmd);
 
+  let cmd = Box::new(AddField);
+  schema.add_migration(cmd);
 
-
-
-
+  println!("schema createTable -->>> {:?}", schema.execute());
+  println!("schema rollBack -->>> {:?}", schema.rollback());
+}
 
 
 
