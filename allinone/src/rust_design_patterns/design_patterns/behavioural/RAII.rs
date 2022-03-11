@@ -1,4 +1,4 @@
-
+/*
 use std::ops::Deref;
 
 struct Foo {}
@@ -52,4 +52,5 @@ fn baz(x: Mutex<Foo>) {
 
   // x is unlocked when we exit this function and xx's destructor is executed.
 }
+ */
 

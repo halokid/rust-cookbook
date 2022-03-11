@@ -176,7 +176,9 @@ fn main() {
   // rust_design_patterns::idioms::finalisation_destructor::comm();
   // rust_design_patterns::design_patterns::behavioural::command1::comm();
   // rust_design_patterns::design_patterns::behavioural::command2::comm();
-  rust_design_patterns::design_patterns::behavioural::interpreter1::comm();
+  // rust_design_patterns::design_patterns::behavioural::interpreter1::comm();
+  // rust_design_patterns::design_patterns::behavioural::strategy::comm();
+  rust_design_patterns::design_patterns::behavioural::stradegy_closure::comm();
   // oop::single_struct_circle::comm();
   // oop::c1::comm1();
   // let s = tokio_myx::c19::comm2().await;
