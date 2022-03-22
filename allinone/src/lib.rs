@@ -50,6 +50,7 @@ pub mod channel_compare_tokio_std;
 pub mod rust_design_patterns;
 pub mod oop;
 pub mod data_structures_algorithms;
+pub mod feature;
 
 // ================== 集成测试 ===================
 /*
