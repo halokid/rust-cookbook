@@ -47,6 +47,8 @@ pub mod tokio_myx;
 pub mod channel_compare_tokio_std;
 pub mod rust_design_patterns;
 pub mod oop;
+pub mod data_structures_algorithms;
+pub mod feature;
 
 use log::debug;
 use simplelog::{ConfigBuilder, LevelFilter, SimpleLogger};
@@ -179,7 +181,8 @@ fn main() {
   // rust_design_patterns::design_patterns::behavioural::interpreter1::comm();
   // rust_design_patterns::design_patterns::behavioural::strategy::comm();
   // rust_design_patterns::design_patterns::behavioural::stradegy_closure::comm();
-  rust_design_patterns::design_patterns::creational::builder::comm();
+  // rust_design_patterns::design_patterns::creational::builder::comm();
+  feature::rc_arc::comm();
   // oop::single_struct_circle::comm();
   // oop::c1::comm1();
   // let s = tokio_myx::c19::comm2().await;

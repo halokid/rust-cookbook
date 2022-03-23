@@ -40,8 +40,46 @@ fn threading() {
 
 fn channels() {
   const N: i32 = 10;
+  let (tx, rx): (Sender<i32>, Receiver<i32>) = channel();
 
+  let handles = (0..N).map( |i| {
+    // todo: iterator map fn do
+    let _tx = tx.clone();
+    thread::spawn(move || {
+      // dont use the result
+      let _ = _tx.send(i).unwrap();
+    })
+  });
+
+  // run all threads
+  for h in handles {
+    h.join().unwrap();
+  }
+
+  // receive N times
+  let numbers: Vec<i32> = (0..N).map( |_| rx.recv().unwrap()).collect();
+
+  println!("numbers -->>> {:?}", numbers);
 }
+
+#[derive(Debug, Clone)]
+struct FileName {
+  name: Rc<String>,
+  ext:  Rc<String>,
+}
+
+fn ref_counter() {
+  let name = Rc::new(String::from("main"));
+  let ext = Rc::new(String::from("rs"));
+
+  for _ in 0..3 {
+    let f = FileName {
+      name:  name.clone(),
+      ext:   ext.clone()
+    };
+  }
+}
+
 
 
 
