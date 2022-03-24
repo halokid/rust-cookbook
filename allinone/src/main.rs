@@ -51,6 +51,7 @@ pub mod tokio_myx;
 pub mod channel_compare_tokio_std;
 pub mod rust_design_patterns;
 pub mod oop;
+pub mod data_structures_algorithms;
 pub mod feature;
 
 use log::debug;
@@ -185,6 +186,7 @@ fn main() {
   // rust_design_patterns::design_patterns::behavioural::strategy::comm();
   // rust_design_patterns::design_patterns::behavioural::stradegy_closure::comm();
   // rust_design_patterns::design_patterns::creational::builder::comm();
+  feature::rc_arc::comm();
   // rust_design_patterns::design_patterns::anti_patterns::deref_polymorphism::comm();
   feature::arc_sample::comm();
   // oop::single_struct_circle::comm();
