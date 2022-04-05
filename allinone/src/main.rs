@@ -186,9 +186,10 @@ fn main() {
   // rust_design_patterns::design_patterns::behavioural::strategy::comm();
   // rust_design_patterns::design_patterns::behavioural::stradegy_closure::comm();
   // rust_design_patterns::design_patterns::creational::builder::comm();
-  feature::rc_arc::comm();
+  // feature::rc_arc::comm();
   // rust_design_patterns::design_patterns::anti_patterns::deref_polymorphism::comm();
-  feature::arc_sample::comm();
+  // feature::arc_sample::comm();
+  data_structures_algorithms::chapter01::comm::comm();
   // oop::single_struct_circle::comm();
   // oop::c1::comm1();
   // let s = tokio_myx::c19::comm2().await;

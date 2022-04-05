@@ -13,7 +13,7 @@ pub fn comm() {
 
   let mut b = Rc::new(1);
   // *b = 2;
-  let c = b + 1;
+  let c = *b + 1;
   println!("b -->>> {}", b);
   println!("c -->>> {}", c);
 

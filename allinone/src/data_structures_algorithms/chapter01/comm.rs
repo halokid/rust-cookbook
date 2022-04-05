@@ -4,7 +4,6 @@ use std::sync::mpsc::{channel, Sender, Receiver};
 use std::rc::Rc;
 use std::cell::RefCell;
 use std::collections::HashMap;
-use serde::private::de::IdentifierDeserializer;
 
 use crate::data_structures_algorithms::chapter01::door;
 
@@ -15,6 +14,7 @@ fn shared_state() {
 
     // todo: the middleware varible(point reference) as bridge between other
     // todo: threads and main thread
+    // todo: number is the `&v` for every thread share!!!!
     let numbers = Arc::clone(&v);
 
     thread::spawn(move || {
@@ -80,9 +80,12 @@ fn ref_counter() {
   }
 }
 
-
-
-
+pub fn comm() {
+  threading();
+  shared_state();
+  channels();
+  ref_counter();
+}
 
 
 
