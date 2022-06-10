@@ -1,2 +1,4 @@
 pub mod heap;
-mod lib;
+pub mod lib;
+pub mod red_black_tree;
+pub mod binary_search_tree;
