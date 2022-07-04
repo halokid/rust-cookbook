@@ -1,3 +1,4 @@
+/*
 use std::collections::HashMap;
 
 type Link = Box<Node>;
@@ -7,3 +8,4 @@ struct Node {
   next:  HashMap<char, Link>,
   pub value:  Option<iotde>
 }
+ */

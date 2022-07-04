@@ -51,6 +51,7 @@ pub mod rust_design_patterns;
 pub mod oop;
 pub mod data_structures_algorithms;
 pub mod feature;
+pub mod fealess_concurrency;
 
 // ================== 集成测试 ===================
 /*

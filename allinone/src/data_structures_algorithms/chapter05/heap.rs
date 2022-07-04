@@ -1,8 +1,6 @@
-use crate::MessageNotification;
 use std::boxed::Box;
 use std::mem;
-
-use
+use crate::data_structures_algorithms::chapter05::lib::MessageNotification;
 
 pub struct MessageChecker {
   pub length: usize,

@@ -33,11 +33,13 @@ impl IoTDevice {
   }
 }
 
+/*
 impl PartialEq for IoTDevice {
   fn eq(&self, other: &Self) -> bool {
 
   }
 }
+ */
 
 
 
