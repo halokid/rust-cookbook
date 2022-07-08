@@ -78,6 +78,10 @@ func main() {
   g.AddEdge(&n4, &n5)
 
   g.String()
+
+  g.BFS(func(node *Node) {
+    fmt.Printf("[Current Traverse Node] -->>> %+v\n", node)
+  })
 }
 
 
