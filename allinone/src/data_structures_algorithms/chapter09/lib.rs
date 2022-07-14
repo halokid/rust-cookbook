@@ -49,6 +49,45 @@ pub fn heap_sort<T: PartialOrd + Clone + Ord>(collection: &[T]) -> Vec<T> {
   heap.into_sorted_vec()
 }
 
+pub fn merge_sort<T: PartialOrd + Clone>(collection: &[T]) -> Vec<T> {
+  if collection.len() > 1 {
+    let (l, r) = collection.split_at(collection.len() / 2);
+    let sorted_l = merge_sort(l);
+    let sorted_r = merge_sort(r);
+
+    let mut result: Vec<T> = collection.into();
+    let (mut i, mut j) = (0, 0);
+    let mut k = 0;
+    while i < sorted_l.len() && j < sorted_r.len() {
+      if sorted_l[i] <= sorted_r[j] {
+        result[k] = sorted_l[i].clone();
+        i += 1;
+      } else {
+        result[k] = sorted_r[j].clone();
+        j += 1;
+      }
+      k += 1;
+    }
+
+    while i < sorted_l.len() {
+      result[k] = sorted_l[i].clone();
+      k += 1;
+      i += 1;
+    }
+
+    while j < sorted_r.len() {
+      result[k] = sorted_r[j].clone();
+      k += 1;
+      j += 1;
+    }
+
+    result
+  } else {
+    collection.to_vec();
+  }
+}
+
+
 
 
 
