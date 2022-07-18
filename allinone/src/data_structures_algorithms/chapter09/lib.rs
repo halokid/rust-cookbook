@@ -87,6 +87,54 @@ pub fn merge_sort<T: PartialOrd + Clone>(collection: &[T]) -> Vec<T> {
   }
 }
 
+pub fn partition<T: PartialOrd + Clone>(
+  collection: &mut [T],
+  low:   usize,
+  high:  usize,
+) -> usize {
+  let pivot = collection[high].clone();
+  let (mut i, mut j) = (low as i64 - 1, high as i64 - 1);
+
+  loop {
+    'lower: loop {
+      i += 1;
+      if i > j || collection[i as usize] >= pivot {
+        break 'lower;
+      }
+    }
+
+    'upper: loop {
+      j -= 1;
+      if i > j || collection[i as usize] <= pivot {
+        break 'upper;
+      }
+    }
+
+    if i > j {
+      return j as usize;
+    }
+    collection.swap(i as usize, j as usize);
+  }
+}
+
+fn quick_sort_r<T: PartialOrd + Clone>(collection: &mut [T], low: usize, high: usize) {
+    if low < high {
+        let pivot = partition(collection, low, high);
+        quick_sort_r(collection, low, pivot);
+        quick_sort_r(collection, pivot + 1, high);
+    }
+}
+
+pub fn quick_sort<T: PartialOrd + Clone>(collection: &[T]) -> Vec<T> {
+    let mut result = collection.to_vec();
+    quick_sort_r(&mut result, 0, collection.len() - 1);
+    result
+}
+
+
+
+
+
 
 
 
