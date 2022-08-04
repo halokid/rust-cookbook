@@ -1,4 +1,4 @@
-
+/*
 use std::collections::binary_heap;
 
 pub fn bubble_sort<T: PartialOrd + Clone>(collection: &[T]) -> Vec<T> {
@@ -130,13 +130,4 @@ pub fn quick_sort<T: PartialOrd + Clone>(collection: &[T]) -> Vec<T> {
     quick_sort_r(&mut result, 0, collection.len() - 1);
     result
 }
-
-
-
-
-
-
-
-
-
-
+ */

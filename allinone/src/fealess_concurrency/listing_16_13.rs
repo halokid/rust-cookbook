@@ -1,3 +1,4 @@
+/*
 use std::sync::Mutex;
 use std::thread;
 
@@ -19,3 +20,5 @@ pub fn comm() {
 
   println!("Result -->>> {}", *counter.lock().unwrap());
 }
+
+ */

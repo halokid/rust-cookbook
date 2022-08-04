@@ -1,3 +1,4 @@
+/*
 use std::cmp::Ordering;
 
 type KeyType = u64;
@@ -54,21 +55,4 @@ fn min_index(weights: &Vec<TentativeWeight>, nodes: &Vec<usize>) -> usize {
   }
   return min_weight.1;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ */

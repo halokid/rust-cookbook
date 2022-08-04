@@ -54,6 +54,7 @@ pub mod oop;
 pub mod data_structures_algorithms;
 pub mod feature;
 pub mod fealess_concurrency;
+pub mod cooking_with_rust;
 
 use log::debug;
 use simplelog::{ConfigBuilder, LevelFilter, SimpleLogger};
@@ -192,7 +193,7 @@ fn main() {
   // feature::arc_sample::comm();
   // data_structures_algorithms::chapter01::comm::comm();
   // fealess_concurrency::listing_16_12::comm();
-  fealess_concurrency::listing_16_13::comm();
+  // fealess_concurrency::listing_16_13::comm();
   // oop::single_struct_circle::comm();
   // oop::c1::comm1();
   // let s = tokio_myx::c19::comm2().await;
@@ -201,6 +202,7 @@ fn main() {
   // std::process::exit(0);
 
   // json_string::comm();
+  cooking_with_rust::concurrency::spawn_a_shortlived_thread::comm();
   // async_block::comm();
   // async_no_block::comm();
   // async_no_block1::comm();

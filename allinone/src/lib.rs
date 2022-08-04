@@ -52,6 +52,7 @@ pub mod oop;
 pub mod data_structures_algorithms;
 pub mod feature;
 pub mod fealess_concurrency;
+pub mod cooking_with_rust;
 
 // ================== 集成测试 ===================
 /*

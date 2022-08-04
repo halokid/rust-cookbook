@@ -11,6 +11,21 @@ pub fn comm() {
   // 长字符串
   let s3 = r#"{"name":"halokid"}"#;
   let js: serde_json::Value = serde_json::from_str(s3).unwrap();
+  println!(r#"js value js["name"] -->>> {:?}"#, js["name"]);
+  println!(r#"js value js["name"].to_string -->>> {:?}"#, js["name"].to_string());
+  println!(r#"js value js["name"].as_str().unwrap() -->>> {:?}"#, js["name"].as_str().unwrap());
+
+  println!("=================================================");
+
+  let namex = js["name"].as_str().unwrap();
+  println!(r#"js["name"].as_str().unwrap().to_string() -->>> {:?}"#, js["name"].as_str().unwrap().to_string());
+  println!(r#"namex -->>> {:?}"#, namex);
+  println!(r#"namex.to_string() -->>> {:?}"#, namex.to_string());
+
+  // println!(r#"js value js["name"].into() -->>> {:?}"#, js["name"].into());
+
+ // let namey = js["name"];
+
   let name = serde_json::json!(js["name"]);
   println!("s3 name --- {}, {}", name, name.to_string());
 
@@ -27,3 +42,4 @@ pub fn comm() {
   let name2 = name.to_string();
   println!("name2 ------ {}", name2);
 }
+

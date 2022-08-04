@@ -1,3 +1,4 @@
+/*
 use std::cell::RefCell;
 use std::rc::Rc;
 use libc::linger;
@@ -67,15 +68,4 @@ impl TransactionLog {
     })
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
+ */
