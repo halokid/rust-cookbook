@@ -55,6 +55,7 @@ pub mod data_structures_algorithms;
 pub mod feature;
 pub mod fealess_concurrency;
 pub mod cooking_with_rust;
+pub mod course_rs;
 
 use log::debug;
 use simplelog::{ConfigBuilder, LevelFilter, SimpleLogger};
@@ -202,10 +203,11 @@ fn main() {
   // std::process::exit(0);
 
   // json_string::comm();
-  cooking_with_rust::concurrency::spawn_a_shortlived_thread::comm();
+  // cooking_with_rust::concurrency::spawn_a_shortlived_thread::comm();
   // async_block::comm();
   // async_no_block::comm();
   // async_no_block1::comm();
+  course_rs::variable_type::c1::comm();
 
   // todo: 引用文件夹里面的函数
   // closure_futures_async_await::p1::comm();
