@@ -207,7 +207,9 @@ fn main() {
   // async_block::comm();
   // async_no_block::comm();
   // async_no_block1::comm();
-  course_rs::variable_type::c1::comm();
+  // course_rs::variable_type::c1::comm();
+  // course_rs::variable_type::c2::comm();
+  course_rs::ownership_borrow::c2::comm();
 
   // todo: 引用文件夹里面的函数
   // closure_futures_async_await::p1::comm();
