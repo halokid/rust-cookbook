@@ -50,6 +50,14 @@ pub fn comm2() {
 } // 老编译器中，r1、r2、r3作用域在这里结束
   // 新编译器中，r3作用域在这里结束
 
+// ------------------------------------------------------
+type FIle = String;
+
+fn read(f: &mut FIle, save_to: &mut Vec<u8>) -> ! {
+  unimplemented!()
+}
+
+
 
 
 
