@@ -210,7 +210,10 @@ fn main() {
   // course_rs::variable_type::c1::comm();
   // course_rs::variable_type::c2::comm();
   // course_rs::ownership_borrow::c2::comm();
-  course_rs::complex_type::string_allinone::comm();
+  // course_rs::complex_type::string_allinone::comm();
+  // course_rs::complex_type::structx::comm();
+  // course_rs::complex_type::enumeration::comm();
+  course_rs::complex_type::optionx::comm();
 
   // todo: 引用文件夹里面的函数
   // closure_futures_async_await::p1::comm();
