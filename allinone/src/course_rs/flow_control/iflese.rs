@@ -1,3 +1,5 @@
+use std::path::Prefix::Verbatim;
+
 pub fn comm() {
   let n = 6;
 
@@ -71,6 +73,22 @@ pub fn comm() {
     _ => ()
   }
   println!("在匹配后，age是{:?}", age);
+
+  // ----------------------------------------------
+  let mut stack = Vec::new();
+  stack.push(1);
+  stack.push(2);
+  stack.push(3);
+
+  while let Some(pop) = stack.pop() {
+    println!("pop -->>> {}", pop);
+  }
+
+  // -------------------------------------------
+  let v = vec!['a', 'b', 'c'];
+  for (index, value) in v.iter().enumerate() {
+    println!("{} is at index {}", value, index);
+  }
 }
 
 #[derive(Debug)]
@@ -78,6 +96,8 @@ enum MyEnum {
   Foo,
   Bar,
 }
+
+
 
 
 
