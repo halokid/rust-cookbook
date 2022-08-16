@@ -76,24 +76,106 @@ pub fn comm() {
     }
     Message::ChangeColor(r, g, b) => {
       println!("Change the color to red {}, green {}, and blue {}",
-      r, g, b);
+               r, g, b);
     }
+  }
+
+  // --------------------------------------------
+  let msg_plus = Message_plus::ChangeColor(Color::Hsv(0, 160, 255));
+  match msg_plus {
+    Message_plus::ChangeColor(Color::Rgb(r, g, b)) => {
+      println!("Change the color to red {}, green {}, and blue {}", r, g, b);
+    }
+    Message_plus::ChangeColor(Color::Hsv(h, s, v)) => {
+      println!("Change the colot to hue {}, saturation {}, and value {}", h, s, v);
+    }
+  }
+
+  // ---------------------------------------------
+  let numbers = (2, 4, 8, 16, 32);
+
+  match numbers {
+    (first, .., last) => {
+      println!("Some numbers: {}, {}", first, last);
+    }
+  }
+
+  // --------------------------------------------
+  let num = Some(4);
+
+  match num {
+    Some(x) if x < 5 => println!("less than five: {}", x),
+    Some(x) => println!("{}", x),
+    None => (),
+  }
+
+  // ---------------------------------------------
+  let x = 4;
+  let y = false;
+
+  match x {
+    4 | 5 | 6 if y => println!("yes"),
+    _ => println!("no"),
+  }
+
+  // ------------------------------------------------
+  let msgx = Message_plusx::Hello { id: 5 };
+  match msgx {
+    Message::Hello { id: id_variable @ 3..=7 } => {
+      println!("Found an id in range: {}", id_variable)
+    }
+    Message::Hello { id: 10..=12 } => {
+      println!("Found an id in another range")
+    }
+    Message::Hello { id } => {
+      println!("Found some other id: {}", id)
+    }
+  }
+
+  // -----------------------------------------------
+  let p @ Point { x: px, y: py } = Point { x: 10, y: 23 };
+  println!("x: {}, y: {}", px, py);
+  println!("{:?}", p);
+
+  let point = Point { x: 10, y: 5 };
+  if let p @ Point { x: 10, y } = point {
+    println!("x is 10 and y is {} in {:?}", y, p);
+  } else {
+    println!("x was not 10 :(");
+  }
+
+  match 1 {
+    num @ (1 | 2) => {
+      println!("{}", num);
+    }
+    _ => {}
   }
 }
 
 enum Message {
   Quit,
-  Move { x: i32, y: i32},
+  Move { x: i32, y: i32 },
   Write(String),
   ChangeColor(i32, i32, i32),
 }
 
+enum Message_plus {
+  ChangeColor(Color)
+}
+
+enum Message_plusx {
+  Hello { id: i32 }
+}
+
+enum Color {
+  Rgb(i32, i32, i32),
+  Hsv(i32, i32, i32),
+}
+
+#[derive(Debug)]
 struct Point {
   x: i32,
   y: i32,
 }
-
-
-
 
 
