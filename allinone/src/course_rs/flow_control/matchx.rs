@@ -121,13 +121,13 @@ pub fn comm() {
   // ------------------------------------------------
   let msgx = Message_plusx::Hello { id: 5 };
   match msgx {
-    Message::Hello { id: id_variable @ 3..=7 } => {
+    Message_plusx::Hello { id: id_variable @ 3..=7 } => {
       println!("Found an id in range: {}", id_variable)
     }
-    Message::Hello { id: 10..=12 } => {
+    Message_plusx::Hello { id: 10..=12 } => {
       println!("Found an id in another range")
     }
-    Message::Hello { id } => {
+    Message_plusx::Hello { id } => {
       println!("Found some other id: {}", id)
     }
   }
@@ -157,6 +157,12 @@ enum Message {
   Move { x: i32, y: i32 },
   Write(String),
   ChangeColor(i32, i32, i32),
+}
+
+impl Message {
+  fn call(&self) {
+    !unimplemented!()
+  }
 }
 
 enum Message_plus {

@@ -215,7 +215,10 @@ fn main() {
   // course_rs::complex_type::enumeration::comm();
   // course_rs::complex_type::optionx::comm();
   // course_rs::flow_control::iflese::comm();
-  course_rs::flow_control::matchx::comm();
+  // course_rs::flow_control::matchx::comm();
+  // course_rs::generic_trait::c1::comm();
+  // course_rs::generic_trait::c2::comm();
+  course_rs::generic_trait::c4::comm();
 
   // todo: 引用文件夹里面的函数
   // closure_futures_async_await::p1::comm();
