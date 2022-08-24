@@ -65,6 +65,23 @@ impl Wizard for Human {
   }
 }
 
+trait Animal {
+  fn baby_name() -> String;
+}
+
+struct Dog;
+
+impl Dog {
+  fn baby_name() -> String {
+    String::from("Spot")
+  }
+}
+
+impl Animal for Dog {
+  fn baby_name() -> String {
+    String::from("puppy")
+  }
+}
 
 pub fn comm() {
   let p1 = Point {
@@ -93,6 +110,12 @@ pub fn comm() {
   let person = Human;
   Pilot::fly(&person);
   Wizard::fly(&person);
+  person.fly();
+
+  // --------------------------------------------------------
+  // println!("1 -- A baby dog is called a {}", Dog::baby_name());
+  // println!("2 -- A baby dog is called a {}", Animal::baby_name());
+  println!("2 -- A baby dog is called a {}", <Dog as Animal>::baby_name());
 }
 
 
