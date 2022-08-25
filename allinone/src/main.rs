@@ -220,7 +220,9 @@ fn main() {
   // course_rs::generic_trait::c2::comm();
   // course_rs::generic_trait::c4::comm();
   // course_rs::generic_trait::c6::comm();
-  course_rs::generic_trait::c7::comm();
+  // course_rs::generic_trait::c7::comm();
+  // course_rs::collections::c1::comm();
+  course_rs::collections::c2::comm();
 
   // todo: 引用文件夹里面的函数
   // closure_futures_async_await::p1::comm();
