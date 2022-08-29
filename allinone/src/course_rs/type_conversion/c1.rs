@@ -1,3 +1,4 @@
+/*
 use std::convert::TryInto;
 use std::sync::Arc;
 
@@ -65,18 +66,4 @@ fn clone_containers<T>(foo: &Container<i32>, bar: &Container<T>) {
 /// ```
 /// 此时，编译器首次尝试值方法调用即可通过，因此 bar_cloned 的类型变成 Container<T>。
 /// 这一块儿内容真的挺复杂，每一个坚持看完的读者都是真正的勇士，我也是：为了写好这块儿内容，作者足足花了 4 个小时！
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/
