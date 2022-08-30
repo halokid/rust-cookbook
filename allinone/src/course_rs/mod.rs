@@ -6,3 +6,4 @@ pub mod generic_trait;
 pub mod collections;
 pub mod type_conversion;
 pub mod error_handle;
+pub mod package_module;
