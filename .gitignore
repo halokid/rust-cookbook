@@ -48,3 +48,5 @@
 /learn_by_sample/*.exe
 /learn_by_sample/trait/*.exe
 /allinone/src/go_src/.idea
+/allinone/src/course_rs/art/.idea
+/allinone/src/course_rs/art/target
