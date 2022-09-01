@@ -225,7 +225,8 @@ fn main() {
   // course_rs::collections::c2::comm();
   // course_rs::type_conversion::c1::comm();
   // course_rs::error_handle::c1::comm();
-  course_rs::error_handle::c2::comm();
+  // course_rs::error_handle::c2::comm();
+  course_rs::comm::comm();
 
   // todo: 引用文件夹里面的函数
   // closure_futures_async_await::p1::comm();
