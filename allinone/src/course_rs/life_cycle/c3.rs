@@ -11,8 +11,8 @@ impl Foo {
 }
 
 pub fn comm() {
-  let mut foo = Foo;
-  let loan = foo.mutate_and_share();
-  foo.share();
-  println!("{:?}", loan);
+  // let mut foo = Foo;
+  // let loan = foo.mutate_and_share();
+  // foo.share();
+  // println!("{:?}", loan);
 }

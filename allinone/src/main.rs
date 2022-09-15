@@ -227,7 +227,9 @@ fn main() {
   // course_rs::error_handle::c1::comm();
   // course_rs::error_handle::c2::comm();
   // course_rs::comm::comm();
-  course_rs::life_cycle::c1::comm();
+  // course_rs::life_cycle::c1::comm();
+  // course_rs::life_cycle::c4::comm();
+  course_rs::closure_iterate::c1::comm();
 
   // todo: 引用文件夹里面的函数
   // closure_futures_async_await::p1::comm();
