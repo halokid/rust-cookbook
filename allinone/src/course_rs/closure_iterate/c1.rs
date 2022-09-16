@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use std::thread;
 use std::time::Duration;
 
@@ -67,7 +68,15 @@ pub fn comm() {
 
   // ------------------------------------------------
   let v1 = vec![1, 2, 3];
-  let v2 = v1.iter().map()
+  let v2: Vec<_> = v1.iter().map(|x| x + 1).collect();
+  println!("{:?}", v2);
+
+  // -----------------------------------------------
+  let names = ["subface", "subfei"];
+  let ages = [18, 18];
+  let folks: HashMap<_, _> = names.into_iter()
+    .zip(ages.into_iter()).collect();
+  println!("{:?}", folks);
 }
 
 
