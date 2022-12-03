@@ -232,7 +232,23 @@ fn main() {
   // course_rs::closure_iterate::c1::comm();
   // course_rs::deep_type::c1::comm();
   // course_rs::deep_type::c2::comm();
-  course_rs::smart_point::c2::comm();
+  // course_rs::smart_point::c2::comm();
+  // course_rs::smart_point::c1::comm();
+  // course_rs::smart_point::c3::comm();
+  // course_rs::smart_point::c4::comm();
+  // course_rs::smart_point::c5::comm();
+  // course_rs::smart_point::c6::comm();
+  // course_rs::smart_point::c8::comm();
+  // course_rs::smart_point::c10::comm();
+  // course_rs::mutil_threads::c1::comm();
+  // course_rs::mutil_threads::c2::comm();
+  // course_rs::mutil_threads::c3::comm();
+  // course_rs::mutil_threads::c5::comm();
+  // course_rs::mutil_threads::c6::comm();
+  // course_rs::mutil_threads::c7::comm();
+  // course_rs::mutil_threads::c8::comm();
+  // course_rs::mutil_threads::c9::comm();
+  course_rs::mutil_threads::c11::comm();
 
   // todo: 引用文件夹里面的函数
   // closure_futures_async_await::p1::comm();

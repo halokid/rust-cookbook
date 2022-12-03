@@ -12,3 +12,5 @@ pub mod life_cycle;
 pub mod closure_iterate;
 pub mod deep_type;
 pub mod smart_point;
+pub mod advance;
+pub mod mutil_threads;
