@@ -252,7 +252,8 @@ fn main() {
   // course_rs::mutil_threads::c12::comm();
   // course_rs::mutil_threads::c13::comm();
   // course_rs::mutil_threads::c15::comm();
-  course_rs::mutil_threads::c16::comm();
+  // course_rs::mutil_threads::c16::comm();
+  course_rs::async_await::c1::comm();
 
   // todo: 引用文件夹里面的函数
   // closure_futures_async_await::p1::comm();
