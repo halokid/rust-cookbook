@@ -1,4 +1,3 @@
-
 // todo: if code builds has warnning, it will build fail!!!
 // #![deny(warnings)]
 
@@ -62,18 +61,20 @@ use simplelog::{ConfigBuilder, LevelFilter, SimpleLogger};
 
 // extern crate local_ipaddress;  // 引入外部crate 方式2
 use local_ipaddress;
-use futures::{Future, FutureExt};        // 引入外部的crate 方式1
+use futures::{Future, FutureExt};
+// 引入外部的crate 方式1
 use futures;
 use std::pin::Pin;
 use std::error::Error;
 use std::convert::Infallible;
 use std::time::Duration;
+use async_std::task::block_on;
 // use tokio::time::delay_for;
 
 // todo: Box的返回是表示该函数返回的数据 夺取了控制权
 // todo: dyn 是表示 trait 的多态
 // todo: 不返回Pin的话会报错, trait `std::marker::Unpin` is not implemented for `dyn core::future::future::Future<Output = i32>
-fn returns_dyn_future_i32() -> Pin<Box<dyn Future<Output = i32>>> {
+fn returns_dyn_future_i32() -> Pin<Box<dyn Future<Output=i32>>> {
   if rand::random() {
     Box::pin((futures::future::ready(42)))
   } else {
@@ -83,14 +84,14 @@ fn returns_dyn_future_i32() -> Pin<Box<dyn Future<Output = i32>>> {
 
 // todo: Infallible 是返回特定的类型， 并且有这个类型的内存声明和长度的
 // todo: Infallible 跟返回一个类型的实行用 Box 包住的作用差不多
-fn return_future_result() -> impl Future<Output = Result<i32, impl Error>> {
+fn return_future_result() -> impl Future<Output=Result<i32, impl Error>> {
   futures::future::ok::<i32, Infallible>(42)
 }
 
 // todo: 线程延时
 // fn returns_delayed_future() -> impl Future<Output = i32> {
-  // delay_for(Duration::from_secs(3))
-  //   .then(|_| futures::future::ready(42))
+// delay_for(Duration::from_secs(3))
+//   .then(|_| futures::future::ready(42))
 // }
 
 pub trait SerialNumber: Sized + Copy + Eq {
@@ -108,6 +109,7 @@ pub trait SerialNumber: Sized + Copy + Eq {
 // todo: arbitrary SERIAL_BITS above 64
 
 #[allow(dead_code)]
+// #[async_std::main]
 fn main() {
   // init log, 初始化log模块
   let config = ConfigBuilder::new()
@@ -253,7 +255,11 @@ fn main() {
   // course_rs::mutil_threads::c13::comm();
   // course_rs::mutil_threads::c15::comm();
   // course_rs::mutil_threads::c16::comm();
-  course_rs::async_await::c1::comm();
+  // course_rs::async_await::c1::comm();
+  // course_rs::async_await::c2::comm();
+  // course_rs::async_await::c3::comm();
+  // block_on(course_rs::async_await::c3::async_comm());
+  // course_rs::practice::async_webserv::single_thread::single_comm();
 
   // todo: 引用文件夹里面的函数
   // closure_futures_async_await::p1::comm();
@@ -426,7 +432,25 @@ mod tests {
    */
 }
 
+/*
+use async_std::net::TcpListener;
+use async_std::net::TcpStream;
+use futures::stream::StreamExt;
+use async_std::task::spawn;
 
+#[async_std::main]
+async fn main() {
+  let listener = TcpListener::bind("127.0.0.1:7878").await.unwrap();
+
+  listener
+    .incoming()
+    .for_each_concurrent(/* limit */ None, |stream| async move {
+      let stream = stream.unwrap();
+      spawn(course_rs::practice::async_webserv::async1::handle_connection(stream));
+    })
+    .await;
+}
+ */
 
 
 

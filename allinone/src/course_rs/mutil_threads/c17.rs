@@ -55,6 +55,7 @@ pub fn comm3() {
 // todo: 因此我们得配合Arc去使用:
 unsafe impl Sync for MyBox {}
 
+/*
 pub fn comm4() {
   let b = &MyBox(5 as *mut u8);
   // todo: Arc 可以在多线程中共享变量的所有权， Mutex可以在多线程中锁变量，避免数据竞争和污染
@@ -67,6 +68,7 @@ pub fn comm4() {
 
   t.join().unwrap();
 }
+*/
 
 
 

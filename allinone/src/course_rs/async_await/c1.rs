@@ -1,7 +1,7 @@
 use futures::executor::block_on;
 
-async fn hello_cat() {
-    println!("hello, kitty!")
+async fn hello_world() {
+    println!("hello, world!");
 }
 
 pub fn comm() {

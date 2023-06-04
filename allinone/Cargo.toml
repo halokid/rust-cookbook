@@ -76,6 +76,9 @@ crossbeam = "0.8"
 #path = "src/rocket_main.rs"
 
 
+#[dependencies.async-std]
+#version = "1.6"
+#features = ["attributes"]
 
 # 此为 开发配置文件, 给 `cargo build` 所使用.
 [profile.dev]
