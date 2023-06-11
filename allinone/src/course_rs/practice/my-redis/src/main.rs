@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+<<<<<<< HEAD
 use std::sync::{Arc, Mutex};
 use bytes::Bytes;
 use mini_redis::{Command, Connection, Frame};
@@ -6,23 +7,36 @@ use tokio::net::{TcpListener, TcpStream};
 
 type Db = Arc<Mutex<HashMap<String, Bytes>>>;
 
+=======
+use mini_redis::{Connection, Frame};
+use tokio::net::{TcpListener, TcpStream};
+
+>>>>>>> d986ec995028e28edc27c3532c29b8f33ad0979e
 #[tokio::main]
 async fn main() {
   let listener = TcpListener::bind("127.0.0.1:6379").await.unwrap();
 
+<<<<<<< HEAD
   println!("-->>> Listening");
 
   let db = Arc::new(Mutex::new(HashMap::new()));
 
+=======
+>>>>>>> d986ec995028e28edc27c3532c29b8f33ad0979e
   loop {
     let (socket, _) = listener.accept().await.unwrap();
     // process(socket).await;
 
+<<<<<<< HEAD
     let db = db.clone();
 
     println!("-->>> Accepted");
     tokio::spawn(async move {
       process(socket, db).await;
+=======
+    tokio::spawn(async move {
+      process(socket).await;
+>>>>>>> d986ec995028e28edc27c3532c29b8f33ad0979e
     });
   }
 }
@@ -40,7 +54,10 @@ async fn process(socket: TcpStream) {
 }
  */
 
+<<<<<<< HEAD
 /*
+=======
+>>>>>>> d986ec995028e28edc27c3532c29b8f33ad0979e
 async fn process(socket: TcpStream) {
   use mini_redis::Command::{self, Get, Set};
   use std::collections::HashMap;
@@ -70,6 +87,7 @@ async fn process(socket: TcpStream) {
     connection.write_frame(&response).await.unwrap();
   }
 }
+<<<<<<< HEAD
  */
 
 
@@ -101,6 +119,8 @@ async fn process(socket: TcpStream, db: Db) {
     connection.write_frame(&response).await.unwrap();
   }
 }
+=======
+>>>>>>> d986ec995028e28edc27c3532c29b8f33ad0979e
 
 
 
