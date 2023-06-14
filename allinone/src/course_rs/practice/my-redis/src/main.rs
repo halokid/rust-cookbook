@@ -1,5 +1,4 @@
 use std::collections::HashMap;
-<<<<<<< HEAD
 use std::sync::{Arc, Mutex};
 use bytes::Bytes;
 use mini_redis::{Command, Connection, Frame};
@@ -7,36 +6,23 @@ use tokio::net::{TcpListener, TcpStream};
 
 type Db = Arc<Mutex<HashMap<String, Bytes>>>;
 
-=======
-use mini_redis::{Connection, Frame};
-use tokio::net::{TcpListener, TcpStream};
 
->>>>>>> d986ec995028e28edc27c3532c29b8f33ad0979e
 #[tokio::main]
 async fn main() {
   let listener = TcpListener::bind("127.0.0.1:6379").await.unwrap();
 
-<<<<<<< HEAD
-  println!("-->>> Listening");
+  println!("Listening");
 
   let db = Arc::new(Mutex::new(HashMap::new()));
 
-=======
->>>>>>> d986ec995028e28edc27c3532c29b8f33ad0979e
   loop {
     let (socket, _) = listener.accept().await.unwrap();
-    // process(socket).await;
-
-<<<<<<< HEAD
+    // 将 handle 克隆一份
     let db = db.clone();
 
-    println!("-->>> Accepted");
+    println!("Accepted");
     tokio::spawn(async move {
       process(socket, db).await;
-=======
-    tokio::spawn(async move {
-      process(socket).await;
->>>>>>> d986ec995028e28edc27c3532c29b8f33ad0979e
     });
   }
 }
@@ -54,10 +40,8 @@ async fn process(socket: TcpStream) {
 }
  */
 
-<<<<<<< HEAD
 /*
 =======
->>>>>>> d986ec995028e28edc27c3532c29b8f33ad0979e
 async fn process(socket: TcpStream) {
   use mini_redis::Command::{self, Get, Set};
   use std::collections::HashMap;
@@ -87,9 +71,7 @@ async fn process(socket: TcpStream) {
     connection.write_frame(&response).await.unwrap();
   }
 }
-<<<<<<< HEAD
  */
-
 
 async fn process(socket: TcpStream, db: Db) {
   use mini_redis::Command::{self, Get, Set};
@@ -103,7 +85,6 @@ async fn process(socket: TcpStream, db: Db) {
         db.insert(cmd.key().to_string(), cmd.value().clone());
         Frame::Simple("OK".to_string())
       }
-
       Get(cmd) => {
         let db = db.lock().unwrap();
         if let Some(value) = db.get(cmd.key()) {
@@ -112,15 +93,15 @@ async fn process(socket: TcpStream, db: Db) {
           Frame::Null
         }
       }
-
-      cmd => panic!("unimplement {:?}", cmd),
+      cmd => panic!("unimplemented {:?}", cmd),
     };
 
     connection.write_frame(&response).await.unwrap();
   }
 }
-=======
->>>>>>> d986ec995028e28edc27c3532c29b8f33ad0979e
+
+
+
 
 
 
