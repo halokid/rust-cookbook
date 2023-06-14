@@ -85,6 +85,7 @@ async fn process(socket: TcpStream, db: Db) {
         db.insert(cmd.key().to_string(), cmd.value().clone());
         Frame::Simple("OK".to_string())
       }
+
       Get(cmd) => {
         let db = db.lock().unwrap();
         if let Some(value) = db.get(cmd.key()) {
@@ -93,6 +94,7 @@ async fn process(socket: TcpStream, db: Db) {
           Frame::Null
         }
       }
+
       cmd => panic!("unimplemented {:?}", cmd),
     };
 
