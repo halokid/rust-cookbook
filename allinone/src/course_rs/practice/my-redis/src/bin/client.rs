@@ -12,7 +12,7 @@ enum Command {
   Set {
     key: String,
     val: Bytes,
-    resp: Responder<T>,
+    resp: Responder<()>,
   },
 }
 

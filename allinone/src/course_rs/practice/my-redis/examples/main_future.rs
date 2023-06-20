@@ -24,10 +24,24 @@ impl Future for MainFuture {
         State0 => {
           let when = Instant::now() + Duration::from_millis(10);
           let future = Delay { when };
-          *self = State1()
+          *self = State1(future);
         }
-        State(_) => {}
-        Terminated => {}
+        State1(ref mut my_future) => {
+          match Pin::new(my_future).poll(cx) {
+            Poll::Ready(out) => {
+              assert_eq!(out, "done");
+              *self = Terminated;
+              return Poll::Ready(());
+            }
+
+            Poll::Pending => {
+              return Poll::Pending;
+            }
+          }
+        }
+        Terminated => {
+          panic!("future polled after completion")
+        }
       }
     }
   }

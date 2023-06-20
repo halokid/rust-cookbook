@@ -18,4 +18,12 @@ path = "examples/hello-redis.rs"
 name = "move_share_var"
 path = "examples/move_share_variable.rs"
 
+[[example]]
+name = "hybrid_sync_async"
+path = "examples/hybrid_sync_async.rs"
+
+[[example]]
+name = "hybrid_sync_async2"
+path = "examples/hybrid_sync_async2.rs"
+
 
