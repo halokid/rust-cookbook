@@ -2,6 +2,8 @@
 配适器模型
  */
 
+mod sample1;
+
 trait Adapter {
   fn get_a(&self) -> usize;
   fn get_b(&self) -> usize;

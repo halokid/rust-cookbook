@@ -1,6 +1,6 @@
 package main
 
-import "fmt"
+import "log"
 
 // TODO: this is a adapter special for `Windows{}`
 
@@ -9,6 +9,6 @@ type WindowsAdapter struct {
 }
 
 func (w *WindowsAdapter) InsertIntoLightningPort() {
-  fmt.Println("Adapter converts Lightning signal to USB.")
+  log.Println("Adapter converts Lightning signal to USB.")
   w.windowMachine.InsertIntoUSBPort()
 }
