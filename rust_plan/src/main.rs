@@ -24,6 +24,12 @@ fn main() {
   // basic::advance2::test_struct_ownership();
   // basic::advance2::test_box_ownership();
   // basic::advance2::test_refcell_ownership();
-  basic::advance2::test_lifetimes();
+  // basic::advance2::test_lifetimes();
+
+  basic::advance3::test_ownership_return();
   // ------------------------- Phase 2 ----------------------------
 }
+
+
+
+
