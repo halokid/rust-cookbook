@@ -128,6 +128,81 @@ fn borrow_string(s: &String) {
 }
 
 
+/**
+题目 1：Option 中的所有权转移
+*/
+fn take (optione: Option<String>) {
+  if let  Some(s) = optione {
+    println!("got: {}", s);
+  }
+}
+
+fn test_take() {
+  let some_string = Some(String::from("Rust"));
+  take(some_string);
+  // println!("{:?}", some_string);
+}
+
+/**
+题目 2：结构体字段所有权
+*/
+struct User {
+  name: String,
+  age:  u32,
+}
+
+fn print_name(user: User) {
+  println!("{}", user.name);
+}
+
+fn test_print_name() {
+  let u = User {
+    name: "Alice".to_string(),
+    age: 0,
+  };
+
+  print_name(u);
+  // println!("{}", u.age);
+}
+
+/**
+题目 3：Vec 中元素 move
+*/
+pub fn test_vec_move() {
+  let mut names = vec![String::from("Alice"), String::from("Bob")];
+
+  let names_cl = names.clone();
+  println!("names_cl -->>> {:?}", names_cl);
+
+  let name = names.pop().unwrap();    // pop() 是 clone
+  println!("Popped name: {}", name);
+  println!("Names left: {:?}", names);
+}
+
+/**
+题目 4：借用冲突
+*/
+pub fn test_borrow_confict() {
+  let mut s = String::from("hello");
+
+  let r1 = &s;
+  // let r2 = &mut s;
+  //
+  // println!("{}, {}", r1, r2);
+}
+
+/*
+✅ 小结总结
+
+操作	                    是否发生 move	              如何避免
+fn f(s: String)	        ✅ 是	                      用借用或 .clone()
+.pop()	                ✅ 是	                      .last().cloned()
+Option<T> 解包	          ✅ 是	                      .clone() 或 .as_ref()
+可变 + 不可变借用	        ❌ 冲突	                    作用域分开
+函数返回值	              ✅ 是	                      接住返回值或用引用
+*/
+
+
 
 
 
