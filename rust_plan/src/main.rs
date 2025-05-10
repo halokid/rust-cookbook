@@ -1,8 +1,9 @@
 
 use rust_plan::basic;
+use rust_plan::basic2;
 
 fn main() {
-  // ------------------------- Phase 1 ----------------------------
+  // - Basic Phase 1: Understand ownership, borrowing, and lifecycle -----
   // let s = "hello".to_string();
   // let sx = basic::phase1_ownership::c1(s);
   //
@@ -26,8 +27,11 @@ fn main() {
   // basic::advance2::test_refcell_ownership();
   // basic::advance2::test_lifetimes();
 
-  basic::advance3::test_ownership_return();
-  // ------------------------- Phase 2 ----------------------------
+  // basic::advance3::test_ownership_return();
+  // basic::advance3::test_lifetimes_struct();
+
+  // - Basic Phase 2: Pratice trait、enum、pattern matching -------------
+  basic2::shape::c1();
 }
 
 

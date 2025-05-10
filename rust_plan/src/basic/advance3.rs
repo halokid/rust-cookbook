@@ -67,6 +67,28 @@ pub fn test_rc_multi_thread_shared() {
   }
 }
 
+/**
+题目 4：生命周期结合结构体
+*/
+struct Book<'a> {
+  title:  &'a str
+}
+
+pub fn test_lifetimes_struct() {
+  // let title = String::from("Rust");
+  // let book = Book {
+  //   title: &title,
+  // };
+
+  let mut book = Book {
+    title: "",
+  };
+  let title = "Rust";
+  book.title = title;
+
+  println!("{}", book.title);
+}
+
 
 
 
