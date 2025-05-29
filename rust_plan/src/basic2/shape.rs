@@ -1,12 +1,16 @@
+use std::any::Any;
 
-trait Shape {
+pub trait Shape: Any  {
   fn area(&self) -> f64;
   fn draw(&self);
+
+  fn as_any(&self) -> &dyn Any;
 }
 
-enum Graphic {
+pub enum Graphic {
   Circle(f64),
   Rectangle(f64, f64),
+  Triangle(f64, f64),
 }
 
 impl Shape for Graphic {
@@ -17,6 +21,9 @@ impl Shape for Graphic {
       }
       Graphic::Rectangle(w, h) => {
         w * h
+      }
+      Graphic::Triangle(b, h) => {
+        0.5 * b * h
       }
     }
   }
@@ -29,7 +36,14 @@ impl Shape for Graphic {
       Graphic::Rectangle(w, h) => {
         println!("Drawing a rectangle of width: {} and height: {}", w, h);
       }
+      Graphic::Triangle(b, h) => {
+        println!("Drawing a Triangle of base: {} and height: {}", b, h);
+      }
     }
+  }
+
+  fn as_any(&self) -> &dyn Any {
+    self
   }
 }
 
@@ -55,8 +69,30 @@ pub fn c1() {
     Graphic::Rectangle(w, h) => {
       println!("s1 is a Rectangle: {} x {}", w, h);
     }
+    Graphic::Triangle(_, _) => {}
   }
 }
+
+pub fn c2() {
+  let shapes: Vec<Box<dyn Shape>> = vec![
+    Box::new(Graphic::Circle(8.0)),
+    Box::new(Graphic::Rectangle(5.0, 7.0)),
+    Box::new(Graphic::Triangle(6.0, 4.0)),
+  ];
+
+  for (i, shape) in shapes.iter().enumerate() {
+    println!("Shape {}:", i + 1);
+    shape.draw();
+    println!("Area: {}\n", shape.area());
+  }
+}
+
+
+
+
+
+
+
 
 
 

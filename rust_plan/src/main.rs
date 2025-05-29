@@ -31,7 +31,10 @@ fn main() {
   // basic::advance3::test_lifetimes_struct();
 
   // - Basic Phase 2: Pratice trait、enum、pattern matching -------------
-  basic2::shape::c1();
+  // basic2::shape::c1();
+  // basic2::shape::c2();
+  // basic2::challenge::c1();
+  basic2::challenge2::c1();
 }
 
 
