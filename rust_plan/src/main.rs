@@ -1,8 +1,9 @@
 
 use rust_plan::basic;
 use rust_plan::basic2;
+use rust_plan::basic3;
 
-fn main() {
+fn c1() {
   // - Basic Phase 1: Understand ownership, borrowing, and lifecycle -----
   // let s = "hello".to_string();
   // let sx = basic::phase1_ownership::c1(s);
@@ -34,8 +35,25 @@ fn main() {
   // basic2::shape::c1();
   // basic2::shape::c2();
   // basic2::challenge::c1();
-  basic2::challenge2::c1();
+  // basic2::challenge2::c1();
+  // basic2::challenge2::c1();
+  // basic2::challenge3::c1();
+  // basic3::c1::c1();
 }
+
+#[tokio::main]
+async fn main() {
+  // basic3::c1::c1().await;
+
+  // basic3::phase1::c1::c1().await;
+
+  // basic3::phase2::c1::c11().await;
+  // basic3::phase2::c1::c12().await;
+  basic3::phase2::concurrent_crawler_simulator::c1().await;
+}
+
+
+
 
 
 
