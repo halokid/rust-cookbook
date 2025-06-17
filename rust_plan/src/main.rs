@@ -49,7 +49,9 @@ async fn main() {
 
   // basic3::phase2::c1::c11().await;
   // basic3::phase2::c1::c12().await;
-  basic3::phase2::concurrent_crawler_simulator::c1().await;
+  // basic3::phase2::concurrent_crawler_simulator::c1().await;
+
+  basic3::phase3::echo_server::c1().await.expect("echo server start fail");
 }
 
 
