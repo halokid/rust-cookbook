@@ -1,3 +1,6 @@
+use tokio::sync::oneshot;
+use tokio::time::{sleep, Duration, timeout};
+
 
 use rust_plan::basic;
 use rust_plan::basic2;
@@ -55,7 +58,41 @@ async fn main() {
   // basic3::phase3::multi_person_chat::c1().await.expect("multi person server start fail");
 
   // basic3::phase4::mpsc::c1().await;
-  basic3::phase4::broadcast::c1().await;
+  // basic3::phase4::broadcast::c1().await;
+  // basic3::phase4::oneshot::c1().await;
+  // basic3::phase4::watch::c1().await;
+  // basic3::phase4::tasks_pool_notification::c1().await;
+  // basic3::phase4::tasks_pool_notification_with_timeout::c1().await;
+
+  // ---------------------
+  let mut receivers = Vec::new();
+
+  for i in 0..5 {
+    let (tx, rx) = oneshot::channel();
+    receivers.push((i, rx));
+
+    // 每个任务的工作时长递增
+    tokio::spawn(async move {
+      println!("🛠️ Task {} started", i);
+      sleep(Duration::from_secs(i + 1)).await;
+      println!("✅ Task {} done", i);
+      let _ = tx.send(format!("Task {} finished", i));
+    });
+  }
+
+  // 主任务设置统一超时时间（例如：最多等 3 秒）
+  let timeout_limit = Duration::from_secs(2);
+
+  for (i, rx) in receivers {
+    match timeout(timeout_limit, rx).await {
+      Ok(Ok(msg)) => println!("📩 Main received: {}", msg),
+      Ok(Err(_)) => println!("❌ Task {}: sender dropped before sending", i),
+      Err(_) => println!("⏰ Task {}: timed out after {:?}", i, timeout_limit),
+    }
+  }
+
+  println!("🎉 Main: done waiting for all tasks!");
+  // -------------------------
 }
 
 

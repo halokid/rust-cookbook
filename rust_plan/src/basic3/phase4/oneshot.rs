@@ -1,4 +1,5 @@
 use tokio::sync::oneshot;
+use tokio::sync::oneshot::error::RecvError;
 use tokio::time::{sleep, Duration};
 
 pub async fn c1() {
@@ -13,6 +14,11 @@ pub async fn c1() {
 
   println!("Waiting for child...");
   match rx.await {
-
+    Ok(msg) => {
+      println!("Main recv: {}", msg);
+    }
+    Err(_) => {
+      println!("Child dropped before sending");
+    }
   }
 }
